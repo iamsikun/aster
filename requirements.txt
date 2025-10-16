@@ -1,0 +1,8 @@
+requests
+python-dotenv
+python-dateutil
+pytz
+tenacity
+pydantic>=2
+pandas
+pyyaml

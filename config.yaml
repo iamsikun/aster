@@ -1,0 +1,29 @@
+sources:
+  arxiv:
+    enabled: true
+    categories: ["cs.LG", "stat.ML", "econ.EM"]
+    query: ""
+    max_results: 120
+  openalex:
+    enabled: true
+    filter: 'from_publication_date:{today},type:journal-article'
+    per_page: 100
+  crossref_events:
+    enabled: true
+    lookback_days: 7
+    rows: 500
+
+ranking:
+  recency_weight: 0.6
+  mentions_7d_weight: 0.4
+  age_half_life_days: 14
+
+delivery:
+  notion:
+    enabled: true
+  slack:
+    enabled: false
+
+limits:
+  new_today: 20
+  trending: 20
