@@ -15,6 +15,7 @@ limits:
   focused_reads_per_day: 20
   analyses_per_day: 3
   audit_fraction: 0.05       # share of exclusions re-screened as audit samples
+  audit_unretrieved_cap: 50
   exploration_sample: 10     # random unmatched items added to the candidate pool daily
   deep_read_max_pages: 80
 
@@ -45,12 +46,13 @@ routes:
     daily_calls: 5
   codex_luna:
     worker: codex
-    model: gpt-6-luna
+    # GPT-6 Luna is API-only; ChatGPT-account Codex offers gpt-5.6-luna (checked 2026-10-09).
+    model: gpt-5.6-luna
     billing: subscription
     daily_calls: 25
   codex_sol:
     worker: codex
-    model: gpt-6.1-sol
+    model: gpt-5.6-sol
     billing: subscription
     daily_calls: 5
   local_gemma:
@@ -73,6 +75,15 @@ roles:
   composer: {routes: [claude_haiku, codex_luna], strategy: fallback}
   local_screener: {routes: [local_gemma], strategy: fallback}
   local_reader: {routes: [local_gemma], strategy: fallback}
+
+screen:
+  embeddings: true           # fastembed bge-small on CPU; BM25-only if unavailable (or LARK_NO_EMBED=1)
+  bm25_top_k: 200
+  bm25_min_rel: 0.2
+  embed_threshold: 0.62
+  embed_top_k: 200
+  concurrency: 4
+  max_output_tokens: 400
 
 sources:
   arxiv:

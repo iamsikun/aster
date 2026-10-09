@@ -1,0 +1,81 @@
+{
+ "notes": [
+  {
+   "id": "note1",
+   "forum": "forum1",
+   "cdate": 1791000000000,
+   "tcdate": 1791000000000,
+   "mdate": 1791200000000,
+   "invitations": [
+    "ICLR.cc/2027/Conference/-/Submission"
+   ],
+   "content": {
+    "title": {
+     "value": "Long-Horizon Policy Evaluation with World Models"
+    },
+    "authors": {
+     "value": [
+      "Alice Doe",
+      "Bob Roe"
+     ]
+    },
+    "abstract": {
+     "value": "We study long-horizon policy evaluation with world models and show it works."
+    },
+    "keywords": {
+     "value": [
+      "off-policy evaluation"
+     ]
+    },
+    "pdf": {
+     "value": "/pdf/1abc.pdf"
+    },
+    "venue": {
+     "value": "ICLR 2027 Conference Submission"
+    },
+    "venueid": {
+     "value": "ICLR.cc/2027/Conference/Submission"
+    }
+   }
+  },
+  {
+   "id": "note2",
+   "forum": "forum2",
+   "cdate": 1791000000000,
+   "tcdate": 1791000000000,
+   "mdate": 1791200000000,
+   "invitations": [
+    "ICLR.cc/2027/Conference/-/Submission"
+   ],
+   "content": {
+    "title": {
+     "value": "A Rejected Paper That Is Public"
+    },
+    "authors": {
+     "value": [
+      "Alice Doe",
+      "Bob Roe"
+     ]
+    },
+    "abstract": {
+     "value": "We study a rejected paper that is public and show it works."
+    },
+    "keywords": {
+     "value": [
+      "off-policy evaluation"
+     ]
+    },
+    "pdf": {
+     "value": "/pdf/2abc.pdf"
+    },
+    "venue": {
+     "value": "Submitted to ICLR 2027"
+    },
+    "venueid": {
+     "value": "ICLR.cc/2027/Conference/Rejected_Submission"
+    }
+   }
+  }
+ ],
+ "count": 2
+}

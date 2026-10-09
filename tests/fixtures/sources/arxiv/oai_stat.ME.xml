@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+    <responseDate>2026-10-09T22:01:30Z</responseDate>
+                <request verb="ListRecords" metadataPrefix="arXiv" from="2026-10-07" until="2026-10-07" set="stat:stat:ME">http://oaipmh.arxiv.org/oai</request>
+
+
+    <ListRecords>
+<record>
+                <header>
+        <identifier>oai:arXiv.org:2110.05720</identifier>
+        <datestamp>2026-10-07</datestamp>
+            <setSpec>stat:stat:ME</setSpec>
+    </header>
+
+            <metadata>
+                        <arXiv xmlns="http://arxiv.org/OAI/arXiv/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXiv/ https://oaipmh.arxiv.org/OAI/arXiv.xsd">
+        <id>2110.05720</id>
+        <created>2026-01-15</created>
+            <updated>2026-10-07</updated>
+        <authors>
+                <author>
+                    <keyname>Rava</keyname>
+                        <forenames>Bradley</forenames>
+                </author>
+                <author>
+                    <keyname>Sun</keyname>
+                        <forenames>Wenguang</forenames>
+                </author>
+                <author>
+                    <keyname>James</keyname>
+                        <forenames>Gareth M.</forenames>
+                </author>
+                <author>
+                    <keyname>Tong</keyname>
+                        <forenames>Xin</forenames>
+                </author>
+        </authors>
+        <title>A Burden Shared is a Burden Halved: A Fairness-Adjusted Approach to Classification</title>
+            <categories>stat.ME</categories>
+            <comments>New results on the Overall False Selection Rate</comments>
+            <doi>10.1080/01621459.2026.2634937</doi>
+            <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+            <abstract>We investigate the fairness issue in classification, where automated decisions are made for individuals from different protected groups. In high-consequence scenarios, decision errors can disproportionately affect certain protected groups, leading to unfair outcomes. To address this issue, we propose a fairness-adjusted selective inference (FASI) framework and develop data-driven algorithms that achieve statistical parity by controlling the false selection rate (FSR) among protected groups. Our FASI algorithm operates by converting the outputs of black-box classifiers into R-values, which are both intuitive and computationally efficient. These R-values serve as the basis for selection rules that are provably valid for FSR control in finite samples for protected groups, effectively mitigating the unfairness in group-wise error rates. We demonstrate the numerical performance of our approach using both simulated and real data.</abstract>
+    </arXiv>
+
+            </metadata>
+        </record>
+<record>
+                <header>
+        <identifier>oai:arXiv.org:2505.23925</identifier>
+        <datestamp>2026-10-07</datestamp>
+            <setSpec>stat:stat:ME</setSpec>
+    </header>
+
+            <metadata>
+                        <arXiv xmlns="http://arxiv.org/OAI/arXiv/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXiv/ https://oaipmh.arxiv.org/OAI/arXiv.xsd">
+        <id>2505.23925</id>
+        <created>2026-10-05</created>
+            <updated>2026-10-07</updated>
+        <authors>
+                <author>
+                    <keyname>Park</keyname>
+                        <forenames>Sihyung</forenames>
+                </author>
+                <author>
+                    <keyname>Stefanski</keyname>
+                        <forenames>Leonard A.</forenames>
+                </author>
+        </authors>
+        <title>Fractional Ridge Regression</title>
+            <categories>stat.ME</categories>
+            <comments>60 pages, 12 figures, 1 table</comments>
+            <license>http://creativecommons.org/licenses/by/4.0/</license>
+            <abstract>Regularization methods such as the Lasso combine shrinkage and variable selection, but strong penalization drives their solutions toward the null model. We introduce Fractional Ridge (Fridge) regression, a penalized regression method that instead shrinks toward models of a prespecified target size. Its penalty vanishes whenever the number of nonzero coefficients does not exceed that target. This behavior connects continuous shrinkage with best subset selection. We develop an efficient recursive penalty-evaluation algorithm, coordinate descent updates, and a predictor-corrector algorithm for tracing solution paths. Under suitable conditions, we establish asymptotic normality, the oracle property, and convergence of global minimizers to best subset solutions under extreme regularization. Simulation studies demonstrate competitive prediction and variable selection across a range of signal strengths and predictor correlations. An application to riboflavin production data illustrates how Fridge selects a small set of predictors whose leading coefficients agree with signals prioritized by a Bayesian method developed specifically for genetic fine-mapping.</abstract>
+    </arXiv>
+
+            </metadata>
+        </record>
+<record>
+                <header>
+        <identifier>oai:arXiv.org:2510.14559</identifier>
+        <datestamp>2026-10-07</datestamp>
+            <setSpec>stat:stat:ME</setSpec>
+    </header>
+
+            <metadata>
+                        <arXiv xmlns="http://arxiv.org/OAI/arXiv/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXiv/ https://oaipmh.arxiv.org/OAI/arXiv.xsd">
+        <id>2510.14559</id>
+        <created>2026-10-06</created>
+            <updated>2026-10-07</updated>
+        <authors>
+                <author>
+                    <keyname>Lai</keyname>
+                        <forenames>En-Yu</forenames>
+                </author>
+                <author>
+                    <keyname>Yu</keyname>
+                        <forenames>Jih-Chang</forenames>
+                </author>
+                <author>
+                    <keyname>Huang</keyname>
+                        <forenames>Yen-Tsung</forenames>
+                </author>
+        </authors>
+        <title>Reframing cross-world independence in multimediator causal models</title>
+            <categories>stat.ME</categories>
+            <license>http://creativecommons.org/licenses/by-nc-nd/4.0/</license>
+            <abstract>Multi-mediator causal models provide a general framework for decomposing causal effects along specific mechanisms, but effect identification in the presence of treatment-induced confounding remains conceptually challenging. Path-specific effects (PSEs) provide one important formulation of such causal decomposition. In particular, existing approaches differ substantially in their counterfactual assumptions and in the interventions used to define effects through specific pathways. We use Single-World Intervention Graphs (SWIGs) as a unifying analytic device to formalize and compare three approaches to PSE identification: classical path-specific effects based on cross-world independence assumptions, interventional effects based on randomized mediator interventions, and separable effects based on decomposing the exposure into distinct causal components. Through this unified analysis, we show that these seemingly different approaches can, under appropriate conditions, lead to the same identification formulas despite relying on different causal assumptions and intervention semantics. The SWIG representation further reveals how each approach resolves the counterfactual conflicts created by treatment-induced confounding. Our results highlight a fundamental distinction between statistical identification and causal interpretation: the same observed-data functional can represent different causal questions depending on how the underlying counterfactual worlds are constructed. This unified perspective clarifies relationships among major approaches in multimediator settings and guides alignment of the estimand, identification assumptions, and scientific mechanism of interest.</abstract>
+    </arXiv>
+
+            </metadata>
+        </record>
+<resumptionToken cursor="0" completeListSize="3"></resumptionToken>
+</ListRecords>
+</OAI-PMH>

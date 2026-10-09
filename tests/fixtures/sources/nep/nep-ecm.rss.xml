@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rss="http://purl.org/rss/1.0/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/"><rss:channel rdf:about="http://lists.repec.org/mailman/listinfo/nep-ecm">
+<rss:title>Econometrics</rss:title>
+<rss:link>http://lists.repec.org/mailman/listinfo/nep-ecm</rss:link>
+<rss:description>Econometrics</rss:description>
+<dc:date>2026-09-14</dc:date>
+<rss:items><rdf:Seq><rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.04983&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.23988&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.22002&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2609.02660&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2609.01804&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.03881&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.22605&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.03847&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2609.01467&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:gwc:wpaper:2026-011&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:cir:cirwor:2026s-15&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.31085&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:cir:cirwor:2026s-14&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.03088&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2609.02756&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:nbr:nberwo:35483&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.02909&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.04664&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2609.04994&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.04631&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2609.03227&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:nbr:nberwo:35487&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:nbr:nberwo:35700&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.22864&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.30446&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:iza:izadps:dp18893&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:arx:papers:2608.30490&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:een:camaaa:2026-75&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:fip:fedgfe:103751&amp;r=&amp;r=ecm"/>
+<rdf:li rdf:resource="https://d.repec.org/n?u=RePEc:boe:boeewp:023266&amp;r=&amp;r=ecm"/>
+</rdf:Seq></rss:items>
+</rss:channel>
+<rss:item rdf:about="https://d.repec.org/n?u=RePEc:arx:papers:2608.04983&amp;r=&amp;r=ecm">
+<rss:title>A Pairwise Differencing Distribution Regression Approach for Network Models</rss:title>
+<rss:link>https://d.repec.org/n?u=RePEc:arx:papers:2608.04983&amp;r=&amp;r=ecm</rss:link>
+<rss:description>I develop an estimation and inference framework for distribution regression in dyadic network settings with two-way fixed effects that vary across thresholds of the outcome. I show that identification of the structural parameters is achieved through binarization of the outcome at each threshold, and estimate the model by conditional maximum likelihood, which "differences out" the fixed effects and circumvents the incidental parameter problem. The estimator remains asymptotically unbiased under sparsity, whether from the network structure or binarization at extreme thresholds. The second novelty is to establish the joint asymptotic distribution of the estimators across multiple thresholds with different convergence rates, and to develop simultaneous confidence bands and tests for equality of coefficients across thresholds. Monte Carlo simulations confirm small bias, valid inference, and correct simultaneous coverage under sparsity. An application to bilateral trade finds that coefficients vary substantially across the distribution, with equality rejected for key trade barriers.</rss:description>
+<dc:creator>Gabriela Miyazato Szini</dc:creator>
+<dc:date>2026-08</dc:date>
+</rss:item>
+<rss:item rdf:about="https://d.repec.org/n?u=RePEc:arx:papers:2608.23988&amp;r=&amp;r=ecm">
+<rss:title>Estimation of Random-Coefficient Dynamic Panel Data Models with a Fixed T</rss:title>
+<rss:link>https://d.repec.org/n?u=RePEc:arx:papers:2608.23988&amp;r=&amp;r=ecm</rss:link>
+<rss:description>We study dynamic linear panel data models in which the lagged outcomes and strictly exogenous covariates carry individual-specific coefficients and the time-varying errors have a flexible covariance structure. With a fixed number of time periods, we point-identify the joint distribution of the random coefficients and the structural errors under a distributional form of strict exogeneity, and propose a closed-form, multi-step estimator based on the inverse Radon transform. We establish a uniform convergence rate for the estimator of the random coefficient density, as well as uniform consistency of the estimator for the conditional density of the time-varying structural errors. Monte Carlo simulations demonstrate good finite-sample performance of the estimators.</rss:description>
+<dc:creator>Xun Tang</dc:creator>
+<dc:creator>Pei Yu</dc:creator>
+<dc:date>2026-08</dc:date>
+</rss:item>
+<rss:item rdf:about="https://d.repec.org/n?u=RePEc:arx:papers:2608.22002&amp;r=&amp;r=ecm">
+<rss:title>Uniformly Valid Inference Under Interactive and High-Dimensional Constraints</rss:title>
+<rss:link>https://d.repec.org/n?u=RePEc:arx:papers:2608.22002&amp;r=&amp;r=ecm</rss:link>
+<rss:description>Asymptotic normality approximations often fail to hold for extremum estimators when the true value of the parameter is at or close to the boundary of a parameter space. I analyze and develop tests using a quasi-unconstrained estimator, which is asymptotically normal even when the true parameter vector is near or at the boundary. These results generalize previous work with this estimator by allowing for more types of constraints and showing how the method can naturally be modified when a nuisance parameter is also high-dimensional. I show that variations of Wald, Likelihood Ratio, and Lagrange Multiplier tests can control size in a uniform sense, provided the initial constrained estimator is sufficiently accurate. Lastly, I apply the method to an application involving network estimation with panel data.</rss:description>
+<dc:creator>Joseph Fry</dc:creator>
+<dc:date>2026-08</dc:date>
+</rss:item>
+</rdf:RDF>

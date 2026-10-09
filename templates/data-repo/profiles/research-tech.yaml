@@ -1,0 +1,41 @@
+id: research-tech
+name: General research technology
+bucket: methods
+priority: low
+description: >
+  Developments in ML research technology useful across projects: model architectures,
+  training methods, evaluation methodology, inference systems, and widely useful
+  libraries, models, and datasets.
+questions:
+  - Which new models, training or inference techniques would change what is practical in my empirical or methodological work?
+  - Which evaluation methods give statistically sound comparisons of models or agents?
+  - Which new tools, libraries, or datasets would save substantial research time?
+keywords:
+  - foundation model
+  - language model
+  - reasoning model
+  - mixture of experts
+  - long context
+  - inference efficiency
+  - quantization
+  - fine-tuning
+  - reinforcement learning from feedback
+  - evaluation methodology
+  - benchmark contamination
+  - open weights release
+  - embedding model
+  - retrieval augmented generation
+  - library release
+recognize:
+  - model releases with open weights that fit on a single 24 GB GPU
+  - statistically careful benchmark comparisons (confidence intervals, contamination checks)
+  - tooling that changes the cost of large-scale text or document processing
+seeds: []      # TODO
+negatives: []  # TODO: e.g. incremental leaderboard results without a reusable idea
+known: []      # TODO
+watch:
+  authors: []
+  labs: []
+  venues: []
+  repos: [vllm-project/vllm, huggingface/transformers, ollama/ollama]
+  hf_orgs: [google, Qwen, deepseek-ai, meta-llama, mistralai, openai, moonshotai]

@@ -35,7 +35,7 @@ class Store:
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.index_path = self.cache_dir / "index.sqlite"
         self.writer = os.getenv("LARK_WRITER", "main")
-        self._lock = threading.Lock()
+        self._lock = threading.RLock()  # guards the shared connection for reads and writes
         fresh = rebuild or not self.index_path.exists()
         if fresh and self.index_path.exists():
             self.index_path.unlink()
@@ -124,7 +124,8 @@ class Store:
 
     # ---------- reads ----------
     def get(self, cls: type[R], key: str) -> R | None:
-        row = self.db.execute("SELECT json FROM latest WHERE kind=? AND key=?", (cls.KIND, key)).fetchone()
+        with self._lock:
+            row = self.db.execute("SELECT json FROM latest WHERE kind=? AND key=?", (cls.KIND, key)).fetchone()
         return cls.model_validate_json(row["json"]) if row else None
 
     def all(self, cls: type[R], where: str = "", params: tuple = (), order: str = "ts") -> list[R]:
@@ -134,7 +135,9 @@ class Store:
         """
         table = "latest" if cls.KEY else "events"
         sql = f"SELECT json FROM {table} WHERE kind=?" + (f" AND ({where})" if where else "") + f" ORDER BY {order}"
-        return [cls.model_validate_json(r["json"]) for r in self.db.execute(sql, (cls.KIND, *params))]
+        with self._lock:
+            rows = self.db.execute(sql, (cls.KIND, *params)).fetchall()
+        return [cls.model_validate_json(r["json"]) for r in rows]
 
     def since(self, cls: type[R], ts: str) -> list[R]:
         return self.all(cls, "ts >= ?", (ts,))
@@ -142,10 +145,12 @@ class Store:
     def count(self, cls: type[Record], where: str = "", params: tuple = ()) -> int:
         table = "latest" if cls.KEY else "events"
         sql = f"SELECT COUNT(*) FROM {table} WHERE kind=?" + (f" AND ({where})" if where else "")
-        return self.db.execute(sql, (cls.KIND, *params)).fetchone()[0]
+        with self._lock:
+            return self.db.execute(sql, (cls.KIND, *params)).fetchone()[0]
 
     def count_events(self) -> int:
-        return self.db.execute("SELECT COUNT(*) FROM events").fetchone()[0]
+        with self._lock:
+            return self.db.execute("SELECT COUNT(*) FROM events").fetchone()[0]
 
     def close(self) -> None:
         self.db.close()

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<atom:link href="http://back.nber.org/rss/new.xml" rel="self" type="application/rss+xml" />
+<title>National Bureau of Economic Research Working Papers</title>
+<description>The Latest NBER Working Papers</description>  
+<link>http://www.nber.org/new.html</link>
+<item>
+<title>Inference for Regression with Clustered or Spatially Correlated Data I: Framework and Clustering -- by A. Colin Cameron, Douglas L. Miller</title>
+<description>Many regression analyses use observations that are correlated within uncorrelated clusters and/or are correlated in distance or other spatial measure. Such data are often positively correlated. This reduces the information content of an additional observation compared to the default of independent observations. Consequently, failure to adjust standard errors for such correlation leads to confidence intervals that are too narrow, and to hypothesis tests that over reject.
+In this paper we first provide a general framework. We then focus on inference when observations are correlated within cluster and uncorrelated across clusters. We detail cluster-robust inference methods, particularly methods that provide improved finite-sample performance when there is not a large number of clusters. Such adjustments are often necessary.
+A companion paper, Cameron and Miller (2026), presents inference when correlation is spatially dampening in the distance between observations. The two papers are intended to provide a guide to empirical researchers.</description>
+<link>https://www.nber.org/papers/w35800#fromrss</link>
+<guid>https://www.nber.org/papers/w35800#fromrss</guid>
+</item>
+<item>
+<title>Inference for Regression with Clustered or Spatially Correlated Data II: Spatial Correlation -- by A. Colin Cameron, Douglas L. Miller</title>
+<description>This article presents inference for regression with data that are correlated across some measure of distance; most often geographic distance. Failure to appropriately adjust standard errors can lead to confidence intervals that are too narrow, and hypothesis tests that over-reject.
+If spatial correlation exists within region but not across regions then one can use cluster-robust inference methods presented in the companion paper, Cameron and Miller (2026).
+In this paper we focus on methods when spatial correlation is dampening in distance. Then the standard inference method is the spatial HAC of Conley (1999). This method does not work well when spatial persistence is high, and alternative inference methods are needed. Additionally it is important that regression models control for any spatial trends to avoid finding spurious correlation.</description>
+<link>https://www.nber.org/papers/w35801#fromrss</link>
+<guid>https://www.nber.org/papers/w35801#fromrss</guid>
+</item>
+<item>
+<title>Crowding Out Temptation: Experimental Evidence on Savings and Health Behaviors in Kenya -- by Harsha Thirumurthy, Elizabeth Bair, Dean Yang, Teniola Egbe, Benard Ayieko, Julius Wesonga, Sue Napierala, Connie Celum, Mary Putt, Carol S. Camlin, Mark Ayallo</title>
+<description>Alcohol use, transactional sex, and gambling carry significant health and economic consequences. We conducted a randomized controlled trial in
+Kenya to assess whether these behaviors could be altered with a savings intervention that provided lottery-based interest, goal-setting support, and
+savings reminders. Over 24 months, the intervention increased formal savings and assets, financed primarily by lower spending on alcohol, transactional sex, and gambling. It also reduced hazardous drinking by 26 percent and intimate partner violence by 15 percent. HIV/STI incidence declined by 8 percent, though this was not statistically significant. Savings interventions can simultaneously boost financial security and change health behavior.</description>
+<link>https://www.nber.org/papers/w35833#fromrss</link>
+<guid>https://www.nber.org/papers/w35833#fromrss</guid>
+</item>
+</channel>
+</rss>

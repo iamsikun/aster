@@ -1,0 +1,24 @@
+[
+ {
+  "html_url": "https://github.com/vllm-project/vllm/releases/tag/v0.31.0",
+  "id": 403435729,
+  "tag_name": "v0.31.0",
+  "name": "v0.31.0",
+  "published_at": "2026-10-05T06:44:55Z",
+  "created_at": "2026-10-02T22:18:12Z",
+  "body": "# v0.31.0\r\n\r\n## Highlights\r\n\r\nThis release features 717 commits from 307 contributors (96 new)!\r\n\r\n* **DeepSeek-V4.1-Flash performance**: FlashMLA mega attention with the V4.1 NVFP4 compressed KV cache is now the SM100 default (#56935); DeepGEMM sparse MQA logits for the indexer (#56254) and Mega-Gate fusing the gate GEMM with expert selection (#56266); decoder boundaries fuse the TP all-reduce, mHC input preparation (#57643) and the MoE finalize (#58586); a fused small-batch WO-A with inverse RoPE and MXFP8 quant on SM100/SM103 (#58634); the MXFP8 `wo_b` GEMM fused with the sequence-parallel reduce-scatter (#57428); Engram `wkv` sharded across TP ranks (#58678) and Engram host tables shared across co-located DP replicas by default (#57651); encoder CUDA graphs for the vision tower (#56625",
+  "draft": false,
+  "prerelease": false
+ },
+ {
+  "html_url": "https://github.com/vllm-project/vllm/releases/tag/v0.30.0",
+  "id": 393467280,
+  "tag_name": "v0.30.0",
+  "name": "v0.30.0",
+  "published_at": "2026-09-22T05:20:54Z",
+  "created_at": "2026-09-21T22:32:49Z",
+  "body": "# v0.30.0\r\n\r\n## Highlights\r\n\r\nThis release features 762 commits from 315 contributors (104 new)!\r\n\r\n* **New models**: DeepSeek-V4.1-Flash (#56214, #56228, #56208) with the whole KV stored in MXFP8 through the FlashMLA V4.1 record on SM100 (#56893), DeepGEMM Mega-mHC (#56962), and async Engram prefetch with Engram DP sharding (#56512); DeepSeek-V4-Flash-Vision-Exp (#54566), also on ROCm (#55107) and with LoRA (#55897); GLM-5.3-Flash (#53906) with EPLB (#55119); K2-Horizon (#55063); Cohere Compass (#54774); Bailing V3 VL (#55921); Nanbeige4.2 via the Transformers backend (#56071); and a DeepSeek-V4 CPU backend with AVX512/AMX sparse MLA, indexer, mHC and compressor kernels (#55355).\r\n* **Fast Start**: a persistent per-GPU weight-cache daemon holds post-quantized, TP-sharded weights in GPU me",
+  "draft": false,
+  "prerelease": false
+ }
+]

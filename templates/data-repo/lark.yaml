@@ -1,0 +1,35 @@
+# Overrides for Lark's built-in defaults (lark/defaults.yaml in the code repo).
+# Anything set here is deep-merged over the defaults; delete what you don't need.
+
+timezone: America/Chicago
+
+# limits:
+#   briefing_items: 8
+#   screen_per_day: 1000
+#   focused_reads_per_day: 20
+#   analyses_per_day: 3
+
+# budget:
+#   monthly_cash_usd: 10.0      # Gemini developer credit
+#   paid_fallback_usd: 0.0      # keep 0 until a measured gap justifies paid API use
+
+# Model routes: confirm exact model ids before the first live run.
+# routes:
+#   codex_luna: {model: gpt-6-luna}
+#   claude_haiku: {daily_calls: 25}
+
+# roles:
+#   reader: {routes: [codex_luna], strategy: fallback}   # e.g. if Claude Enterprise automation is not allowed
+
+# sources:
+#   arxiv:
+#     categories: [stat.ML, stat.ME, econ.EM, cs.LG]
+#   openreview:
+#     venues: [ICLR.cc/2027/Conference]
+
+delivery:
+  channels: [email, archive]
+  # ntfy: {click_url: "https://github.com/iamsikun/lark-data/tree/main/briefings"}
+
+feedback:
+  repo: iamsikun/lark-data

@@ -1,0 +1,46 @@
+name: Save Lark state
+description: Commit new state to this repo, and refresh the Codex credential secret if it rotated.
+inputs:
+  message:
+    description: Commit message
+    required: true
+  admin-token:
+    description: Fine-grained PAT with Secrets write on this repo (secret LARK_ADMIN_TOKEN)
+    default: ""
+runs:
+  using: composite
+  steps:
+    - name: Refresh rotated Codex credentials
+      if: inputs.admin-token != ''
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.admin-token }}
+      run: |
+        if [ -f ~/.codex/auth.json ] && [ -f "$RUNNER_TEMP/codex-auth.sha" ]; then
+          now=$(sha256sum ~/.codex/auth.json | cut -d' ' -f1)
+          if [ "$now" != "$(cat "$RUNNER_TEMP/codex-auth.sha")" ]; then
+            gh secret set CODEX_AUTH_JSON --repo "$GITHUB_REPOSITORY" < ~/.codex/auth.json
+            echo "Codex credentials rotated; secret updated."
+          fi
+        fi
+    - name: Commit and push state
+      shell: bash
+      env:
+        MESSAGE: ${{ inputs.message }}
+      run: |
+        git config user.name "lark-bot"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        for p in data cache/fulltext briefings eval; do
+          [ -e "$p" ] && git add -A -- "$p"
+        done
+        if git diff --cached --quiet; then
+          echo "No state changes."
+          exit 0
+        fi
+        git commit -q -m "$MESSAGE"
+        for i in 1 2 3 4 5; do
+          if git pull -q --rebase && git push -q; then exit 0; fi
+          sleep $((i * 5))
+        done
+        echo "Failed to push state after retries" >&2
+        exit 1

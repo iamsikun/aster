@@ -1,0 +1,36 @@
+# Explicit follows. Matches here always enter the candidate pool (the "watchlist" retrieval
+# route), regardless of keyword or embedding scores. Profile-specific follows live in each
+# profile's `watch:` block; this file is for cross-cutting ones.
+# All URLs and repos below were checked on 2026-10-09.
+
+authors: []        # TODO: e.g. ["Isaiah Andrews", "Victor Chernozhukov"]; matched on author names
+labs: []           # TODO: affiliation strings, matched when sources provide them
+
+# GitHub repositories whose releases are tracked (owner/name).
+repos:
+  - vllm-project/vllm
+  - huggingface/transformers
+  - pytorch/pytorch
+  - ollama/ollama
+  - grobidOrg/grobid
+  - docling-project/docling
+  - BerriAI/litellm
+  - asreview/asreview
+  - anthropics/claude-code
+  - openai/codex
+  - google-gemini/gemini-cli
+
+# Hugging Face organizations whose new model cards are tracked.
+hf_orgs: [google, Qwen, deepseek-ai, meta-llama, mistralai, openai, moonshotai]
+
+# Research blogs (RSS/Atom). Each post becomes a "release" work item.
+blogs:
+  - {name: OpenAI News, url: "https://openai.com/news/rss.xml"}
+  - {name: Google Research, url: "https://research.google/blog/rss/"}
+  - {name: Google DeepMind, url: "https://deepmind.google/blog/rss.xml"}
+  - {name: Hugging Face, url: "https://huggingface.co/blog/feed.xml"}
+  - {name: Microsoft Research, url: "https://www.microsoft.com/en-us/research/feed/"}
+  - {name: BAIR, url: "https://bair.berkeley.edu/blog/feed.xml"}
+  - {name: "Lil'Log", url: "https://lilianweng.github.io/index.xml"}
+  - {name: Simon Willison, url: "https://simonwillison.net/atom/everything/"}
+  - {name: Statistical Modeling (Gelman), url: "https://statmodeling.stat.columbia.edu/feed/"}

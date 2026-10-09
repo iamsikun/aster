@@ -1,0 +1,35 @@
+id: generative-decisions
+name: Generative models for decisions
+bucket: active
+priority: medium
+description: >
+  Using generative models as inputs to economic and operational decisions: inference
+  with synthetic data, LLM-simulated consumers or respondents, assortment and revenue
+  management with generative demand models, and generative optimization.
+questions:
+  - When can synthetic data or LLM-simulated responses support valid statistical inference, and how should they be combined with real data?
+  - How can generative models of demand or choice be used for assortment, pricing, and revenue management decisions?
+  - What guarantees exist for decisions optimized against a generative model that is itself estimated?
+keywords:
+  - synthetic data inference
+  - LLM simulated respondents
+  - silicon samples
+  - prediction-powered inference
+  - assortment optimization
+  - revenue management
+  - choice models
+  - dynamic pricing
+  - generative optimization
+  - diffusion models for optimization
+  - data augmentation for estimation
+  - simulation-based inference
+  - conformal decision making
+recognize:
+  - combining a small labeled sample with many model-generated predictions to estimate a parameter
+  - using language models as stand-ins for consumers in conjoint or pricing experiments
+  - decision-focused learning / predict-then-optimize with generative components
+  - contextual optimization where uncertainty comes from a learned generator
+seeds: []      # TODO
+negatives: []  # TODO
+known: []      # TODO
+watch: {authors: [], labs: [], venues: [], repos: []}

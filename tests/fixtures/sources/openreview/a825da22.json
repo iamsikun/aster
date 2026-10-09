@@ -1,0 +1,43 @@
+{
+ "notes": [
+  {
+   "id": "note3",
+   "forum": "forum3",
+   "cdate": 1791000000000,
+   "tcdate": 1791000000000,
+   "mdate": 1791200000000,
+   "invitations": [
+    "ICLR.cc/2027/Conference/-/Submission"
+   ],
+   "content": {
+    "title": {
+     "value": "Selective Inference for Leaderboards"
+    },
+    "authors": {
+     "value": [
+      "Alice Doe",
+      "Bob Roe"
+     ]
+    },
+    "abstract": {
+     "value": "We study selective inference for leaderboards and show it works."
+    },
+    "keywords": {
+     "value": [
+      "off-policy evaluation"
+     ]
+    },
+    "pdf": {
+     "value": "/pdf/3abc.pdf"
+    },
+    "venue": {
+     "value": "ICLR 2027 Poster"
+    },
+    "venueid": {
+     "value": "ICLR.cc/2027/Conference"
+    }
+   }
+  }
+ ],
+ "count": 1
+}

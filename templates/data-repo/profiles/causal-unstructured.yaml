@@ -1,0 +1,39 @@
+id: causal-unstructured
+name: Causal learning from unstructured data
+bucket: active
+priority: high
+description: >
+  Causal inference when treatments, outcomes, or confounders are text, images, or other
+  high-dimensional unstructured data: learned representations, identification under
+  representation learning, nuisance estimation with foundation models, orthogonal
+  estimation, and causal generative models.
+questions:
+  - When does a learned representation of unstructured data preserve identification of the causal effect of interest?
+  - How do estimation errors in ML/LLM-derived nuisance functions or measurements propagate into causal estimates, and how can orthogonalization or debiasing correct them?
+  - Can generative models produce valid counterfactual units or outcomes for unstructured treatments?
+keywords:
+  - causal representation learning
+  - text as treatment
+  - text as confounder
+  - double machine learning
+  - debiased machine learning
+  - orthogonal moments
+  - Neyman orthogonality
+  - nuisance estimation
+  - embeddings as covariates
+  - LLM-generated labels
+  - measurement error in machine learning outputs
+  - prediction-powered inference
+  - counterfactual generation
+  - causal generative models
+  - proxy variables
+recognize:
+  - using LLM or classifier outputs as variables in a regression and correcting the resulting bias
+  - identification arguments where the treatment is a high-dimensional object (an image, a document, a product description)
+  - surrogate or proxy-based identification with learned proxies
+  - semiparametric efficiency with machine-learned nuisances
+  - synthetic control or matching on learned embeddings
+seeds: []      # TODO
+negatives: []  # TODO: e.g. purely predictive representation learning with no causal estimand
+known: []      # TODO
+watch: {authors: [], labs: [], venues: [], repos: []}

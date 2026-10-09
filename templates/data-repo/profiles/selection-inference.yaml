@@ -1,0 +1,47 @@
+# Research profile. Lark uses `description`, `questions`, `keywords`, and `recognize`
+# for retrieval and screening; `seeds` and `negatives` calibrate both; `known` keeps
+# already-familiar work out of the briefing.
+id: selection-inference
+name: Selection and statistical decision making
+bucket: active          # active | methods | exploration
+priority: high          # high | medium | low
+description: >
+  Inference and decisions after data-driven selection: the winner's curse, ranking
+  and selection uncertainty, nonregular estimation of functionals like the maximum,
+  and adaptive experimentation where selection and estimation interact.
+questions:
+  - How can we construct valid confidence intervals or bias corrections for the value of an arm, policy, or model chosen because it looked best?
+  - When are bootstrap or resampling methods valid for nonregular functionals (max, argmax, ranks) near ties, and what replaces them when they are not?
+  - How should adaptive experiments trade off selecting a winner against reliable post-selection estimation of its effect?
+keywords:
+  - winner's curse
+  - selective inference
+  - post-selection inference
+  - ranking uncertainty
+  - confidence sets for ranks
+  - nonregular estimation
+  - inference on the maximum
+  - argmax inference
+  - adaptive experimentation
+  - best-arm identification
+  - multiple hypothesis testing
+  - empirical Bayes shrinkage
+  - conditional inference
+  - data splitting
+  - bandit inference
+recognize:
+  - bootstrap inference for a maximum or minimum of estimated parameters, even if the paper never says "winner's curse"
+  - directional differentiability and the delta method for non-differentiable functionals
+  - uniform (honest) inference over parameter spaces that include ties or near-ties
+  - hybrid / conditional / projection confidence intervals after selection
+  - inference on policy value after learning the policy from the same data
+  - A/B test platforms correcting estimates for the launched variant
+  - local asymptotics and moment-inequality methods for selection problems
+seeds: []               # TODO: add 3–10 papers you consider central, e.g. {title: "...", id: "doi:..."}
+negatives: []           # TODO: superficially similar but irrelevant, e.g. feature selection for prediction accuracy only
+known: []               # TODO: papers/ideas already known (titles or ids), so Lark doesn't present them as new
+watch:
+  authors: []           # TODO
+  labs: []
+  venues: []
+  repos: []

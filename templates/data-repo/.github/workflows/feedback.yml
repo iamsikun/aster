@@ -1,0 +1,32 @@
+name: feedback
+# Optional: record feedback as soon as an issue is filed, instead of waiting for the daily run.
+on:
+  issues:
+    types: [opened, labeled]
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: lark-state
+  cancel-in-progress: false
+jobs:
+  sync:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.labels.*.name, 'feedback')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      LARK_DATA_DIR: ${{ github.workspace }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-lark
+        with:
+          extras: embed
+          install-clis: "false"
+      - name: Sync feedback issues
+        run: lark feedback sync --data-dir .
+      - if: always()
+        uses: ./.github/actions/save-state
+        with:
+          message: "lark: feedback sync ${{ github.run_id }}"

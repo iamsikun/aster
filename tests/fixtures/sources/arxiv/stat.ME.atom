@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en-us">
+  <id>http://rss.arxiv.org/atom/stat.ME</id>
+  <title>stat.ME updates on arXiv.org</title>
+  <updated>2026-10-09T04:22:00.342642+00:00</updated>
+  <link href="http://rss.arxiv.org/atom/stat.ME" rel="self" type="application/atom+xml"/>
+  <subtitle>stat.ME updates on the arXiv.org e-print archive.</subtitle>
+    <entry>
+    <id>oai:arXiv.org:2610.10783v1</id>
+    <title>Kriging and Gaussian processes: interconnected frameworks for spatial modelling and prediction</title>
+    <updated>2026-10-09T04:22:00.342714+00:00</updated>
+    <link href="https://arxiv.org/abs/2610.10783" rel="alternate" type="text/html"/>
+    <summary>arXiv:2610.10783v1 Announce Type: new 
+Abstract: Spatial modelling and inference arise across many areas of science and engineering, with Kriging and Gaussian process (GP) regression serving as two widely used predictive models. Although grounded in the same random field theory, these approaches are often treated in isolation. As a result, their connection has been obscured by differences in terminology, notation, and practical implementation. This separation largely reflects their independent development within geostatistics and machine learning, respectively. To bridge this methodological divide, this work establishes a unified mathematical framework that connects the two paradigms. The underlying assumptions and formulations of each approach are detailed and compared within this framework. This comparison highlights their differences while clarifying the connections between them. The resulting perspective provides practitioners with a common foundation for translating concepts and methods between geostatistics and machine learning. In particular, it makes methodological developments in either field more accessible to the other, including advances in uncertainty quantification from the GP literature.</summary>
+    <category term="stat.ME"/>
+    <published>2026-10-09T00:00:00-04:00</published>
+    <arxiv:announce_type>new</arxiv:announce_type>
+    <dc:rights>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</dc:rights>
+    <dc:creator>Hossein Mohammadi</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2610.10851v1</id>
+    <title>Treatment Effect Modification by Latent Classes</title>
+    <updated>2026-10-09T04:22:00.342898+00:00</updated>
+    <link href="https://arxiv.org/abs/2610.10851" rel="alternate" type="text/html"/>
+    <summary>arXiv:2610.10851v1 Announce Type: new 
+Abstract: Many treatments have effects that plausibly vary by latent classes. For example, the effect of personalized video recommendations may be stronger for users who seek a new discovery than for users seeking to rewatch something familiar. In the context of user journeys on digital platforms, we can conceptualize user moods as dynamic latent states that lead to distinct action distributions. Because mood is unobserved, we infer it from a user's pre-treatment actions using a hidden Markov model (HMM), and then leverage the latent state as an interpretable treatment effect modifier when evaluating experiment results. Under a treatment-effect sufficiency assumption, each observable conditional effect is a known mixture of the latent effects, so state-specific effects are identified when state posteriors are sufficiently heterogeneous. We propose an estimator that is Neyman-orthogonal to errors in the fitted HMM, enabling standard influence-function confidence intervals. In a real-world large-scale A/B test of a new recommendation model at Netflix, our latent-state analysis reveals that heavy-engagement users show significantly positive effects across all treatment variants, with limited evidence of benefit among less-active and rewatch-oriented users.</summary>
+    <category term="stat.ME"/>
+    <published>2026-10-09T00:00:00-04:00</published>
+    <arxiv:announce_type>new</arxiv:announce_type>
+    <dc:rights>http://creativecommons.org/licenses/by/4.0/</dc:rights>
+    <dc:creator>Hui Lan, Nathan Kallus, Winston Chou</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2610.10597v1</id>
+    <title>Certified Corruption Budgets: Anytime-Valid Leaderboard Claims under Adaptive Rigging</title>
+    <updated>2026-10-09T04:22:00.344515+00:00</updated>
+    <link href="https://arxiv.org/abs/2610.10597" rel="alternate" type="text/html"/>
+    <summary>arXiv:2610.10597v1 Announce Type: cross 
+Abstract: Public leaderboards for AI models are read continuously, and attackers can see every published standing. Vote rigging, selective disclosure of private variants, and benchmark contamination can each move a ranking. Existing guarantees assume genuine records or bound the corruption per step, which an attacker who corrupts in bursts evades. We introduce the certified corruption budget, a tolerance $\widehat{B}_t$ computed after $t$ records and published with each pairwise claim. With probability at least $1-\alpha$, simultaneously at all times, the claim is correct or more than $\widehat{B}_t$ records were corrupted. It holds against attackers who watch every certificate, with no bound on their budget. Forged records and records altered once seen require different certificates: the certificate for forgeries fails, with probability approaching one, against an attacker who flips votes it has seen, while one that charges roughly twice as much per record remains valid, with constant bets even against attackers who see the future, and no smaller charge is valid at every level. The certified budget grows nearly as fast as any valid method allows: with a win fraction $\frac{1}{2}+\delta$, each new record adds close to $2\delta$ to the number of forged records the claim can withstand ($\delta$ flipped). Publishing the best of $V$ private variants costs only an amount growing like $\log V$. In replays on 1.8 million Chatbot Arena votes, a few hundred rigged votes make standard confidence intervals certify false orderings, while ours stays valid. On real votes, our certificate shows that clearly separated models withstand about 2,000 forged votes.</summary>
+    <category term="cs.CR"/>
+    <category term="cs.AI"/>
+    <category term="stat.ME"/>
+    <published>2026-10-09T00:00:00-04:00</published>
+    <arxiv:announce_type>cross</arxiv:announce_type>
+    <dc:rights>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</dc:rights>
+    <dc:creator>Hamed Khosravi, Xiaoming Huo</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2209.13918v4</id>
+    <title>Inference in generalized linear models with robustness to misspecified variances</title>
+    <updated>2026-10-09T04:22:00.345151+00:00</updated>
+    <link href="https://arxiv.org/abs/2209.13918" rel="alternate" type="text/html"/>
+    <summary>arXiv:2209.13918v4 Announce Type: replace 
+Abstract: Generalized linear models usually assume a common dispersion parameter, an assumption that is seldom true in practice. Consequently, standard parametric methods may suffer appreciable loss of type I error control. As an alternative, we present a semi-parametric group-invariance method based on sign flipping of score contributions. Our method requires only the correct specification of the mean model, but is robust against any misspecification of the variance. We present tests for single as well as multiple regression coefficients. The test is asymptotically valid but shows excellent performance in small samples. We illustrate the method using RNA sequencing count data, for which it is difficult to model the overdispersion correctly. The method is available in the R library flipscores.</summary>
+    <category term="stat.ME"/>
+    <category term="math.ST"/>
+    <category term="stat.TH"/>
+    <published>2026-10-09T00:00:00-04:00</published>
+    <arxiv:announce_type>replace</arxiv:announce_type>
+    <dc:rights>http://creativecommons.org/licenses/by/4.0/</dc:rights>
+    <dc:creator>Riccardo De Santis, Jelle J. Goeman, Jesse Hemerik, Samuel Davenport, Livio Finos</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2507.09824v4</id>
+    <title>Spatial Dependencies in Item Response Theory: Gaussian Process Priors for Ecological and Cognitive Measurement</title>
+    <updated>2026-10-09T04:22:00.345981+00:00</updated>
+    <link href="https://arxiv.org/abs/2507.09824" rel="alternate" type="text/html"/>
+    <summary>arXiv:2507.09824v4 Announce Type: replace-cross 
+Abstract: Measurement validity in Item Response Theory depends on appropriately modeling dependencies between items when these reflect meaningful theoretical structures rather than random measurement error. In ecological assessment, citizen scientists identifying species across geographic regions exhibit systematic spatial patterns in task difficulty due to environmental factors. Similarly, in Author Recognition Tests, literary knowledge organizes by genre, where familiarity with science fiction authors systematically predicts recognition of other science fiction authors. Current spatial Item Response Theory methods, represented by the 1PLUS, 2PLUS, and 3PLUS model family, address these dependencies but remain limited by (1) binary response restrictions, and (2) conditional autoregressive priors that impose rigid local correlation assumptions, preventing effective modeling of complex spatial relationships. Our proposed method, Spatial Gaussian Process Item Response Theory (SGP-IRT), addresses these limitations by replacing conditional autoregressive priors with flexible Gaussian process priors that adapt to complex dependency structures while maintaining principled uncertainty quantification. SGP-IRT accommodates polytomous responses and models spatial dependencies in both geographic and abstract cognitive spaces, where items cluster by theoretical constructs rather than physical proximity. Simulation studies demonstrate improved parameter recovery, particularly for item difficulty estimation. Empirical applications show enhanced recovery of meaningful difficulty surfaces and improved measurement precision across psychological, educational, and ecological research applications.</summary>
+    <category term="stat.AP"/>
+    <category term="stat.ME"/>
+    <published>2026-10-09T00:00:00-04:00</published>
+    <arxiv:announce_type>replace-cross</arxiv:announce_type>
+    <dc:rights>http://creativecommons.org/licenses/by/4.0/</dc:rights>
+    <dc:creator>Mingya Huang, Soham Ghosh</dc:creator>
+  </entry>
+</feed>
