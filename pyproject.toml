@@ -1,16 +1,54 @@
 [project]
 name = "lark"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.2.0"
+description = "A research briefing pipeline: collect papers broadly, screen against research profiles, read selected work with evidence, and deliver a short daily briefing."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 dependencies = [
-    "pandas>=2.3.3",
-    "pydantic>=2",
-    "python-dateutil>=2.9.0.post0",
-    "python-dotenv>=1.1.1",
-    "pytz>=2025.2",
-    "pyyaml>=6.0.3",
-    "requests>=2.32.5",
-    "tenacity>=9.1.2",
+    "feedparser>=6.0",
+    "google-genai>=1.0",
+    "jinja2>=3.1",
+    "pydantic>=2.7",
+    "pymupdf>=1.24",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+    "rank-bm25>=0.2.2",
+    "requests>=2.32",
+    "sickle>=0.7",
+    "tenacity>=9.0",
+    "typer>=0.12",
 ]
+
+[project.optional-dependencies]
+# CPU embeddings for retrieval; optional so the core install stays light.
+embed = ["fastembed>=0.4"]
+# Heavier PDF/OCR parsing, intended for the GPU workstation runner.
+docling = ["docling>=2.0"]
+
+[project.scripts]
+lark = "lark.cli:app"
+
+[dependency-groups]
+dev = [
+    "jsonschema>=4.23",
+    "pytest>=8.3",
+    "ruff>=0.6",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["lark"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501", "B008"]  # B008: typer options are declared as defaults
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

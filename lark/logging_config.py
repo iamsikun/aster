@@ -1,6 +1,8 @@
-import logging, os
+import logging
+import os
 
-def configure_logging():
+
+def configure_logging() -> None:
     level = os.getenv("LOG_LEVEL", "INFO").upper()
     logging.basicConfig(
         level=getattr(logging, level, logging.INFO),
