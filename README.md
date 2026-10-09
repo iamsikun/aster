@@ -1,6 +1,6 @@
-# PaperScout — daily "new & trending" papers bot
+# Lark — daily "new & trending" papers bot
 
-PaperScout collects **new** and **trending** papers each day (arXiv + OpenAlex + Crossref Event Data),
+Lark collects **new** and **trending** papers each day (arXiv + OpenAlex + Crossref Event Data),
 ranks them, and delivers a digest to **Notion** and/or **Slack**.
 
 ## Quick start

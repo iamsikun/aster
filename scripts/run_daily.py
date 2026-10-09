@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys
-from paperscout.main import main
+from lark.main import main
 
 if __name__ == "__main__":
     sys.exit(main())

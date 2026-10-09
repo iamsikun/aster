@@ -1,7 +1,7 @@
 import sqlite3, json, os
 from contextlib import contextmanager
 
-DB_PATH = os.getenv("PAPERSCOUT_DB", "paperscout.sqlite")
+DB_PATH = os.getenv("LARK_DB", "lark.sqlite")
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS papers (

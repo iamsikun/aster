@@ -141,6 +141,33 @@ wheels = [
 ]
 
 [[package]]
+name = "lark"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "pandas" },
+    { name = "pydantic" },
+    { name = "python-dateutil" },
+    { name = "python-dotenv" },
+    { name = "pytz" },
+    { name = "pyyaml" },
+    { name = "requests" },
+    { name = "tenacity" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "pandas", specifier = ">=2.3.3" },
+    { name = "pydantic", specifier = ">=2" },
+    { name = "python-dateutil", specifier = ">=2.9.0.post0" },
+    { name = "python-dotenv", specifier = ">=1.1.1" },
+    { name = "pytz", specifier = ">=2025.2" },
+    { name = "pyyaml", specifier = ">=6.0.3" },
+    { name = "requests", specifier = ">=2.32.5" },
+    { name = "tenacity", specifier = ">=9.1.2" },
+]
+
+[[package]]
 name = "numpy"
 version = "2.0.2"
 source = { registry = "https://pypi.org/simple" }
@@ -413,33 +440,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/f7/26/617f98de789de00c2a444fbe6301bb19e66556ac78cff933d2c98f62f2b4/pandas-2.3.3-cp39-cp39-musllinux_1_2_aarch64.whl", hash = "sha256:23ebd657a4d38268c7dfbdf089fbc31ea709d82e4923c5ffd4fbd5747133ce73", size = 13208697, upload-time = "2025-09-29T23:34:21.835Z" },
     { url = "https://files.pythonhosted.org/packages/b9/fb/25709afa4552042bd0e15717c75e9b4a2294c3dc4f7e6ea50f03c5136600/pandas-2.3.3-cp39-cp39-musllinux_1_2_x86_64.whl", hash = "sha256:5554c929ccc317d41a5e3d1234f3be588248e61f08a74dd17c9eabb535777dc9", size = 13879233, upload-time = "2025-09-29T23:34:35.079Z" },
     { url = "https://files.pythonhosted.org/packages/98/af/7be05277859a7bc399da8ba68b88c96b27b48740b6cf49688899c6eb4176/pandas-2.3.3-cp39-cp39-win_amd64.whl", hash = "sha256:d3e28b3e83862ccf4d85ff19cf8c20b2ae7e503881711ff2d534dc8f761131aa", size = 11359119, upload-time = "2025-09-29T23:34:46.339Z" },
-]
-
-[[package]]
-name = "paper-scout"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "pandas" },
-    { name = "pydantic" },
-    { name = "python-dateutil" },
-    { name = "python-dotenv" },
-    { name = "pytz" },
-    { name = "pyyaml" },
-    { name = "requests" },
-    { name = "tenacity" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "pandas", specifier = ">=2.3.3" },
-    { name = "pydantic", specifier = ">=2" },
-    { name = "python-dateutil", specifier = ">=2.9.0.post0" },
-    { name = "python-dotenv", specifier = ">=1.1.1" },
-    { name = "pytz", specifier = ">=2025.2" },
-    { name = "pyyaml", specifier = ">=6.0.3" },
-    { name = "requests", specifier = ">=2.32.5" },
-    { name = "tenacity", specifier = ">=9.1.2" },
 ]
 
 [[package]]

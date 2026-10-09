@@ -10,7 +10,7 @@ def post_to_slack(rows: list[dict]):
     for r in rows:
         line = f"• *{r.get('title','')}* ({r.get('venue','?')}, {r.get('year','?')}) — score {r.get('score',0):.3f}\n{r.get('url') or r.get('pdf_url') or ''}"
         text_lines.append(line)
-    text = "*PaperScout — Daily brief*\n" + "\n".join(text_lines[:50])
+    text = "*Lark — Daily brief*\n" + "\n".join(text_lines[:50])
     if webhook:
         try:
             requests.post(webhook, json={"text": text}, timeout=20)
