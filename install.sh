@@ -273,6 +273,8 @@ cmd_install() {
     say "automatic updates off; run '$ASTER_HOME/install.sh update' to update"
   fi
   say "done. Restart your agent to pick up the skill."
+  [ -f "${ASTER_CONFIG:-$HOME/.config/aster/config.yaml}" ] ||
+    say "then ask it to \"set up Aster\": it will ask which fields, journals and conferences you follow"
 }
 
 # Fast-forward only: never discards local edits, never moves to unreleased work.

@@ -57,6 +57,9 @@ aster fields    # what each field follows
 aster doctor    # configuration, environment, and how each source last ran
 ```
 
+Until `fields:` is set, Aster runs on the defaults and your agent offers a first-time setup:
+ask it to *"set up Aster"* and it asks which fields, journals and conferences you follow.
+
 Example:
 
 ```yaml

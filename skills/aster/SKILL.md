@@ -33,7 +33,10 @@ Keep reports short. A quiet week is a valid answer; padding is not.
    `curl -fsSL https://raw.githubusercontent.com/iamsikun/aster/stable/install.sh | bash`.
 2. Learn the user's setup: `aster fields --json` lists each field's tier, sources, keywords and
    web-search hints, plus the user's `interests` and `follows`. Core fields get full attention,
-   skim fields a line or two, muted fields none. If the user names a topic or field that is not
+   skim fields a line or two, muted fields none. If `setup.needed` is true, the user has not
+   chosen what to follow and the packaged defaults are standing in: before the first brief,
+   run the first-time setup in [Configuration](references/config.md#first-time-setup). If they
+   would rather start now, use the defaults and offer setup again at the end. If the user names a topic or field that is not
    configured, still answer, and offer to add it ([Configuration](references/config.md)).
 3. If the user mentions a knowledge base or one is connected (for example Cairn tools), use it
    to see what they already have before recommending; see [Handoff](references/handoff.md).
@@ -46,7 +49,7 @@ Keep reports short. A quiet week is a valid answer; padding is not.
 | "What's hot / being discussed about X?", "is everyone talking about Y?" | Buzz | [Buzz](references/buzz.md) |
 | "Recent working papers on X", "what came out on Y since June?" | Sweep | [Sweep and lookup](references/sweep.md) |
 | "Has this paper been published?", "who is discussing this paper?" | Lookup | [Sweep and lookup](references/sweep.md) |
-| "Follow these journals/people", "add a field", "mute ML" | Configure | [Configuration](references/config.md) |
+| "Set up Aster", "follow these journals/people", "add a field", "mute ML" | Configure | [Configuration](references/config.md) |
 
 Every mode that searches the web follows [Web search](references/web-search.md): how to search
 each platform, how to verify an item, and how to record it.

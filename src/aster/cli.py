@@ -118,7 +118,9 @@ def cmd_fields(args) -> int:
     cfg = load_config(args.config, args.data_dir)
     info = _field_info(cfg)
     if args.json:
-        _print_json({"fields": info, "interests": cfg.interests, "follows": cfg.follows.model_dump()})
+        _print_json(
+            {"setup": cfg.setup, "fields": info, "interests": cfg.interests, "follows": cfg.follows.model_dump()}
+        )
         return 0
     for f in info:
         print(f"{f['id']} ({f['name']}): {f['tier']}")
@@ -200,6 +202,7 @@ def cmd_candidates(args) -> int:
             {
                 "schema": CANDIDATES_SCHEMA,
                 "generated_at": ctx.run_date,
+                "setup": ctx.config.setup,
                 "window": {"since": since, "until": args.until, "first_seen_since": args.first_seen_since},
                 "match": _phrases(args) if args.match or args.match_file else None,
                 "field": args.field,
@@ -338,6 +341,7 @@ def cmd_doctor(args) -> int:
                 "config": str(cfg.path),
                 "config_exists": cfg.path.exists(),
                 "data_dir": str(cfg.data_dir),
+                "setup": cfg.setup,
                 "fields": {f.id: f.tier for f in cfg.fields.values()},
                 "env": {name: bool(os.getenv(name)) for name in env},
                 "sources": sources,
@@ -350,6 +354,8 @@ def cmd_doctor(args) -> int:
     print(f"config  {cfg.path}{'' if cfg.path.exists() else '  (not created; defaults in use)'}")
     print(f"data    {cfg.data_dir}")
     print(f"fields  {', '.join(f'{f.id} ({f.tier})' for f in cfg.fields.values()) or 'none'}")
+    if cfg.setup_needed:
+        print(f"setup   needed ({cfg.setup['reason']}); the defaults are in use")
     for name, why in env.items():
         print(f"env     {name}: {'set' if os.getenv(name) else 'not set'} ({why})")
     for s in sources:
@@ -430,10 +436,29 @@ def build_parser() -> argparse.ArgumentParser:
     return p
 
 
+SETUP_HINT = (
+    "aster: {reason} ({config}), so the default fields are in use. Ask your agent to set up Aster "
+    "(it will ask which fields, journals and conferences to follow), or edit `fields:` yourself."
+)
+
+
+def _setup_hint(args) -> None:
+    """Tell a person, on stderr, that fields are unchosen; JSON callers read `setup` instead."""
+    if args.command in ("init", "paths") or getattr(args, "json", False):
+        return
+    try:
+        setup = load_config(args.config, args.data_dir).setup
+    except ConfigError:
+        return  # the command itself reports the error
+    if setup["needed"]:
+        print(SETUP_HINT.format(**setup), file=sys.stderr)
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     logging.basicConfig(level=logging.INFO if args.verbose else logging.WARNING, format="%(levelname)s %(message)s")
     try:
+        _setup_hint(args)
         return int(args.func(args) or 0)
     except ConfigError as e:
         print(f"config error: {e}", file=sys.stderr)

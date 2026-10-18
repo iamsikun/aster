@@ -118,3 +118,22 @@ def test_doctor_json_reports_sources_and_last_success(run):
     ok = [s for s in report["sources"] if s["enabled"] and s["status"] == "ok"]
     assert ok and report["last_success"] == max(s["last_success"] for s in report["sources"] if s["last_success"])
     assert code == (1 if report["problems"] else 0) and report["ok"] == (not report["problems"])
+
+
+def test_unconfigured_aster_asks_for_setup(run, tmp_path, monkeypatch, capsys):
+    monkeypatch.setenv("ASTER_CONFIG", str(tmp_path / "none.yaml"))
+    code, out = run("fields", "--json")
+    assert json.loads(out)["setup"]["needed"] is True
+    assert "set up Aster" not in capsys.readouterr().err  # JSON callers read `setup`
+    main(["fields"])
+    captured = capsys.readouterr()
+    assert "no config file" in captured.err and "set up Aster" in captured.err
+    code, out = run("doctor")
+    assert "setup   needed" in out
+
+
+def test_configured_aster_is_quiet(run, capsys):
+    main(["fields"])
+    assert capsys.readouterr().err == ""
+    code, out = run("candidates", "--json")
+    assert json.loads(out)["setup"]["needed"] is False

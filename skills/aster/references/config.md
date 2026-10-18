@@ -5,6 +5,32 @@ commented template). It is merged over the packaged defaults: mappings merge, li
 and `null` removes an entry. Edit it only when the user asks, show them the change, and run
 `aster fields` afterwards to confirm it loads.
 
+## First-time setup
+
+`setup.needed` in `aster fields --json` (also in `candidates --json` and `doctor --json`) is
+true while there is no config file or its `fields:` is empty. The defaults (economics, machine
+learning, quantitative finance, marketing) are only a stand-in, so ask before relying on them:
+
+1. Ask, in one message, which research fields they follow and, for each, the journals,
+   conferences (OpenReview venues such as `ICLR.cc/2027/Conference`), arXiv categories, working
+   paper series and lab or blog feeds they care about. Ask also for a few phrases describing
+   their own research (`interests`) and people to follow. Offer the defaults as a starting
+   point they can trim.
+2. Map the answers: journals to registry ids (`aster fields --json` lists each field's journals;
+   the full registry is `src/aster/assets/journals.yaml` in the repository). A journal not in
+   the registry goes under `journals:` with ISSNs you confirmed at
+   `https://api.crossref.org/journals/<issn>`. Never guess an ISSN or a venue id; ask, or leave
+   it out and say so.
+3. Run `aster init` if there is no config file, then write the `fields:` section (and
+   `interests`, `follows`, `feeds`, `journals`). Show the user the result. Default fields they
+   did not mention stay active unless they mute them (`tier: mute`) or remove them (`null`), so
+   ask about those too.
+4. Run `aster fields` to confirm the config loads and `setup.needed` is now false, then
+   `aster refresh`.
+
+A user who simply wants the defaults ends setup by listing them, e.g.
+`fields: {economics: {tier: core}}` for each field kept.
+
 ## Fields
 
 The defaults are `economics`, `machine-learning`, `quant-finance` and `marketing`, all `core`.

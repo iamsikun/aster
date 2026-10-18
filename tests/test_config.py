@@ -59,3 +59,17 @@ def test_feeds_combine_field_and_user_feeds(ctx):
 
 def test_deep_merge():
     assert deep_merge({"a": {"b": 1, "c": 2}}, {"a": {"b": 3, "c": None}}) == {"a": {"b": 3}}
+
+
+def test_setup_is_needed_until_fields_are_chosen(tmp_path):
+    from aster.config import ASSETS
+
+    missing = load_config(tmp_path / "missing.yaml", tmp_path / "data")
+    assert missing.setup == {"needed": True, "reason": "no config file", "config": str(tmp_path / "missing.yaml")}
+    path = tmp_path / "config.yaml"
+    path.write_text((ASSETS / "config.example.yaml").read_text())  # `fields:` is empty
+    template = load_config(path, tmp_path / "data")
+    assert template.setup_needed and template.setup["reason"] == "no fields in the config file"
+    assert len(template.active_fields()) == 4  # the defaults still apply meanwhile
+    path.write_text(yaml.safe_dump({"fields": {"economics": {"tier": "core"}}}))
+    assert not load_config(path, tmp_path / "data").setup_needed

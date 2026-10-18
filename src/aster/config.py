@@ -64,6 +64,16 @@ class Config:
     data: dict[str, Any]
     fields: dict[str, Field] = field(default_factory=dict)
     journals: dict[str, Journal] = field(default_factory=dict)
+    # The user has not chosen fields yet: no config file, or one whose `fields:` is empty.
+    # The packaged defaults still apply; the agent asks the user what to follow.
+    setup_needed: bool = False
+
+    @property
+    def setup(self) -> dict:
+        reason = None
+        if self.setup_needed:
+            reason = "no config file" if not self.path.exists() else "no fields in the config file"
+        return {"needed": self.setup_needed, "reason": reason, "config": str(self.path)}
 
     def get(self, dotted: str, default: Any = None) -> Any:
         cur: Any = self.data
@@ -126,4 +136,6 @@ def load_config(config_path: str | Path | None = None, data_dir: str | Path | No
     if tz := merged.get("timezone"):
         os.environ.setdefault("ASTER_TZ", tz)
     d = Path(data_dir).expanduser() if data_dir else paths.data_dir()
-    return Config(path=path, data_dir=d, data=merged, fields=fields, journals=journals)
+    return Config(
+        path=path, data_dir=d, data=merged, fields=fields, journals=journals, setup_needed=not user.get("fields")
+    )

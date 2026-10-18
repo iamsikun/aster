@@ -16,6 +16,8 @@ follows:
 
 # Fields. The defaults are economics, machine-learning, quant-finance and marketing.
 # tier: core | skim | mute. Change what a field follows, or add your own field.
+# While this section is empty, Aster treats itself as not set up: the defaults apply and your
+# agent asks which fields, journals and conferences you follow.
 fields:
   # marketing:
   #   tier: skim

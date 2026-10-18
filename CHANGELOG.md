@@ -8,6 +8,10 @@ Aster uses semantic versioning:
 
 ## Unreleased
 
+- Ask new users what to follow. Until the config file has a `fields:` section, `aster fields`,
+  `candidates` and `doctor --json` report `setup.needed`, text commands print a hint, and the
+  skill runs a first-time setup that asks for fields, journals, conferences and feeds. The
+  installer suggests it too. The defaults still apply meanwhile.
 - Add `aster candidates --match`, `--match-file` and `--first-seen-since`, so a scheduler
   can ask for new items on its own topics since its last run. The JSON gains `match` and
   `window.first_seen_since`.
