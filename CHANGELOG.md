@@ -8,6 +8,10 @@ Aster uses semantic versioning:
 
 ## Unreleased
 
+- Add muted `probability`, `applied-math`, `mathematics` and `physics` fields, with 24
+  journals in the registry (Annals of Probability, Mathematical Programming, SIAM journals,
+  Annals of Mathematics, Physical Review Letters and others).
+
 ## 0.1.0 — 2026-10-18
 
 First release of Aster, rebuilt from the Lark briefing pipeline (whose last state is tagged

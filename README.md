@@ -20,8 +20,9 @@ links to its primary source, and the discussion around it is linked post by post
   reason for every ranking. Judgment and writing come from the agent you already use.
 - **Remembers what you've seen,** so later briefs don't repeat items.
 
-The default fields are **economics, machine learning, quantitative finance and marketing**. All
-of them are configurable: add your own fields, journals, feeds and people.
+The default fields are **economics, machine learning, quantitative finance and marketing**.
+Probability, applied mathematics, mathematics and physics are packaged too, but muted. All of
+them are configurable: add your own fields, journals, feeds and people.
 
 ## Install
 

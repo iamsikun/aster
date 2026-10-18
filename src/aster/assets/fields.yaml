@@ -109,3 +109,26 @@ fields:
         - new SSRN marketing working paper
         - quantitative marketing paper
         - Marketing Science forthcoming
+
+  # Muted by default: set `tier: core` or `skim` in your config to follow one.
+  probability:
+    name: Probability
+    tier: mute
+    arxiv: [math.PR]
+    journals: [aop, aap, ptrf]
+
+  applied-math:
+    name: Optimization, applied and numerical mathematics
+    tier: mute
+    arxiv: [math.OC, math.NA]
+    journals: [mathprog, siopt, sinum, siap, sirev, numerische, mcom, imajna, focm, actanumerica, cpa, arma]
+
+  mathematics:
+    name: Mathematics
+    tier: mute
+    journals: [annmath, invent, jams, actamath, ihes]
+
+  physics:
+    name: Physics
+    tier: mute
+    journals: [prl, prx, rmp, nphys]

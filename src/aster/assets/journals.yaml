@@ -67,3 +67,31 @@ journals:
   - {id: nature, area: science, name: "Nature", issn: [0028-0836, 1476-4687]}
   - {id: science, area: science, name: "Science", issn: [0036-8075, 1095-9203]}
   - {id: pnas, area: science, name: "Proceedings of the National Academy of Sciences", issn: [0027-8424, 1091-6490]}
+  # --- probability ---
+  - {id: aop, area: probability, name: "Annals of Probability", issn: [0091-1798, 2168-894X]}
+  - {id: aap, area: probability, name: "Annals of Applied Probability", issn: [1050-5164, 2168-8737]}
+  - {id: ptrf, area: probability, name: "Probability Theory and Related Fields", issn: [0178-8051, 1432-2064]}
+  # --- applied-math ---
+  - {id: mathprog, area: applied-math, name: "Mathematical Programming", issn: [0025-5610, 1436-4646]}
+  - {id: siopt, area: applied-math, name: "SIAM Journal on Optimization", issn: [1052-6234, 1095-7189]}
+  - {id: sinum, area: applied-math, name: "SIAM Journal on Numerical Analysis", issn: [0036-1429, 1095-7170]}
+  - {id: siap, area: applied-math, name: "SIAM Journal on Applied Mathematics", issn: [0036-1399, 1095-712X]}
+  - {id: sirev, area: applied-math, name: "SIAM Review", issn: [0036-1445, 1095-7200]}
+  - {id: numerische, area: applied-math, name: "Numerische Mathematik", issn: [0029-599X, 0945-3245]}
+  - {id: mcom, area: applied-math, name: "Mathematics of Computation", issn: [0025-5718, 1088-6842]}
+  - {id: imajna, area: applied-math, name: "IMA Journal of Numerical Analysis", issn: [0272-4979, 1464-3642]}
+  - {id: focm, area: applied-math, name: "Foundations of Computational Mathematics", issn: [1615-3375, 1615-3383]}
+  - {id: actanumerica, area: applied-math, name: "Acta Numerica", issn: [0962-4929, 1474-0508]}
+  - {id: cpa, area: applied-math, name: "Communications on Pure and Applied Mathematics", issn: [0010-3640, 1097-0312]}
+  - {id: arma, area: applied-math, name: "Archive for Rational Mechanics and Analysis", issn: [0003-9527, 1432-0673]}
+  # --- mathematics ---
+  - {id: annmath, area: mathematics, name: "Annals of Mathematics", issn: [0003-486X, 1939-8980]}
+  - {id: invent, area: mathematics, name: "Inventiones mathematicae", issn: [0020-9910, 1432-1297]}
+  - {id: jams, area: mathematics, name: "Journal of the American Mathematical Society", issn: [0894-0347, 1088-6834]}
+  - {id: actamath, area: mathematics, name: "Acta Mathematica", issn: [0001-5962, 1871-2509]}
+  - {id: ihes, area: mathematics, name: "Publications mathématiques de l'IHÉS", issn: [0073-8301, 1618-1913]}
+  # --- physics ---
+  - {id: prl, area: physics, name: "Physical Review Letters", issn: [0031-9007, 1079-7114]}
+  - {id: prx, area: physics, name: "Physical Review X", issn: [2160-3308]}
+  - {id: rmp, area: physics, name: "Reviews of Modern Physics", issn: [0034-6861, 1539-0756]}
+  - {id: nphys, area: physics, name: "Nature Physics", issn: [1745-2473, 1745-2481]}

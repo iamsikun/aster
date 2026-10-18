@@ -6,8 +6,12 @@ from aster.config import ConfigError, deep_merge, load_config
 
 def test_defaults_without_a_config_file(tmp_path):
     cfg = load_config(tmp_path / "missing.yaml", tmp_path / "data")
-    assert list(cfg.fields) == ["economics", "machine-learning", "quant-finance", "marketing"]
-    assert all(f.tier == "core" for f in cfg.fields.values())
+    active = [f.id for f in cfg.active_fields()]
+    assert active == ["economics", "machine-learning", "quant-finance", "marketing"]
+    assert all(f.tier == "core" for f in cfg.active_fields())
+    muted = {"probability", "applied-math", "mathematics", "physics"}
+    assert {f.id for f in cfg.fields.values() if f.tier == "mute"} == muted
+    assert "aop" in cfg.journals and "prl" in cfg.fields["physics"].journals
     assert cfg.get("sources.arxiv.enabled") is True
     assert "jmlr" not in cfg.journals and "mksc" in cfg.journals
 
@@ -41,7 +45,7 @@ def test_empty_sections_in_the_template_mean_unset(tmp_path):
     path = tmp_path / "config.yaml"
     path.write_text((ASSETS / "config.example.yaml").read_text())
     cfg = load_config(path, tmp_path / "data")
-    assert len(cfg.fields) == 4 and cfg.get("sources.nep.enabled") is True and cfg.interests == []
+    assert len(cfg.active_fields()) == 4 and cfg.get("sources.nep.enabled") is True and cfg.interests == []
 
 
 def test_unknown_journal_is_an_error(tmp_path):
