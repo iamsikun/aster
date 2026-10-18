@@ -1,56 +1,57 @@
 [project]
-name = "lark"
-version = "0.2.0"
-description = "A research briefing pipeline: collect papers broadly, screen against research profiles, read selected work with evidence, and deliver a short daily briefing."
+name = "aster-scout"
+version = "0.1.0"
+description = "An agent skill and CLI that finds what is new and what is being discussed in your research fields."
 readme = "README.md"
 requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Sikun Xu" }]
+keywords = ["agent-skill", "research", "arxiv", "ssrn", "papers", "claude-code", "codex"]
 dependencies = [
     "feedparser>=6.0",
-    "google-genai>=1.0",
-    "jinja2>=3.1",
     "pydantic>=2.7",
-    "pymupdf>=1.24",
-    "python-dotenv>=1.0",
     "pyyaml>=6.0",
     "rank-bm25>=0.2.2",
     "requests>=2.32",
     "tenacity>=9.0",
-    "typer>=0.12",
 ]
 
-[project.optional-dependencies]
-# CPU embeddings for retrieval; optional so the core install stays light.
-embed = ["fastembed>=0.4"]
-# Heavier PDF/OCR parsing, intended for the GPU workstation runner.
-docling = ["docling>=2.0"]
+[project.urls]
+Homepage = "https://github.com/iamsikun/aster"
+Repository = "https://github.com/iamsikun/aster"
+Changelog = "https://github.com/iamsikun/aster/blob/main/CHANGELOG.md"
+Issues = "https://github.com/iamsikun/aster/issues"
 
 [project.scripts]
-lark = "lark.cli:app"
+aster = "aster.cli:main"
 
 [dependency-groups]
 dev = [
-    "jsonschema>=4.23",
     "pytest>=8.3",
     "ruff>=0.6",
 ]
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.27.0"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["lark"]
+packages = ["src/aster"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"skills/aster" = "aster/skill"
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "skills", "evals", "scripts", "install.sh", ".claude-plugin", "README.md", "CHANGELOG.md", "LICENSE", "AGENTS.md"]
 
 [tool.ruff]
-line-length = 110
+line-length = 120
 target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
-ignore = ["E501", "B008"]  # B008: typer options are declared as defaults
+ignore = ["E501"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-
-[tool.hatch.build.targets.wheel.force-include]
-"templates/data-repo" = "lark/_templates/data-repo"
+pythonpath = ["src"]

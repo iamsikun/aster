@@ -1,0 +1,45 @@
+# Aster configuration. Everything here is optional: delete what you don't change.
+# Defaults: https://github.com/iamsikun/aster/tree/main/src/aster/assets
+# Dicts merge with the defaults, lists replace them, and `null` removes an entry.
+
+# Your own research, in a few phrases. They rank items within your fields.
+interests:
+  # - heterogeneous treatment effects
+  # - large language models as simulated consumers
+
+# People, labs and organizations to follow across every field.
+follows:
+  authors: []        # e.g. "Susan Athey", or an OpenAlex id like A5023888391
+  labs: []           # matched in title and abstract text
+  hf_orgs: []        # Hugging Face organizations
+  repos: []          # GitHub owner/name, e.g. vllm-project/vllm
+
+# Fields. The defaults are economics, machine-learning, quant-finance and marketing.
+# tier: core | skim | mute. Change what a field follows, or add your own field.
+fields:
+  # marketing:
+  #   tier: skim
+  # machine-learning:
+  #   openreview: [ICLR.cc/2027/Conference]   # needs OPENREVIEW_USERNAME / OPENREVIEW_PASSWORD
+  # statistics:
+  #   name: Statistics
+  #   tier: core
+  #   arxiv: [stat.ME, stat.TH]
+  #   journals: [aos, jasa, jrssb, biometrika]
+  #   keywords: [conformal prediction, multiple testing]
+  #   search: {sites: [x.com, bsky.app], queries: [new statistics methods paper]}
+
+# Your own RSS/Atom feeds. kind: paper (a journal's feed) or release (posts, announcements).
+feeds:
+  # - {name: My lab blog, url: "https://example.org/feed.xml", kind: release, fields: [machine-learning]}
+
+# Journals not in the packaged registry; list their ids in a field's `journals`.
+journals:
+  # - {id: jmp, name: "Journal of Marketing Policy", issn: [1234-5678]}
+
+# Per-source settings; set enabled: false to switch a source off.
+sources:
+  # openreview: {enabled: false}
+  # huggingface: {daily_papers: false}
+
+# timezone: Europe/London   # default: the system time zone

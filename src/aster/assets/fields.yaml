@@ -1,0 +1,109 @@
+# Default research fields. Override any of them in your config under `fields:`; keys merge,
+# lists replace, and `<field>: null` removes a field. Add a field by giving it a new id.
+#
+# tier: core (followed closely), skim (followed lightly), mute (not collected or ranked)
+# arxiv: categories or whole archives (q-fin covers q-fin.*), read from the daily announcements
+# journals: ids from journals.yaml, followed through Crossref
+# nep: RePEc NEP report codes; nber: follow the NBER new working papers feed
+# openreview: venue ids such as ICLR.cc/2027/Conference (needs an OpenReview login)
+# feeds: RSS/Atom feeds; kind is paper (a journal or preprint feed) or release (posts, model cards)
+# hf_orgs: Hugging Face organizations whose new models are collected
+# keywords: phrases that place an item from any source into this field
+# search: hints the agent uses when it searches the web for this field
+
+fields:
+  economics:
+    name: Economics
+    tier: core
+    arxiv: [econ.EM, econ.TH, econ.GN]
+    journals: [aer, qje, ecta, jpe, restud, restat, joe, jbes, qe, aej-micro, aej-applied, aej-policy, te]
+    nep: [nep-ecm, nep-big, nep-cmp]
+    nber: true
+    keywords:
+      - causal inference
+      - difference-in-differences
+      - instrumental variable
+      - structural estimation
+      - mechanism design
+      - market design
+      - labor market
+      - industrial organization
+    search:
+      sites: [nber.org, ssrn.com, cepr.org, voxeu.org, aeaweb.org, x.com, bsky.app]
+      queries:
+        - new NBER working paper
+        - job market paper economics
+        - economics working paper discussion
+
+  machine-learning:
+    name: Machine learning
+    tier: core
+    arxiv: [cs.LG, stat.ML, cs.AI, cs.CL]
+    journals: [natmachintell]
+    feeds:
+      - {name: JMLR, url: "https://www.jmlr.org/jmlr.xml", kind: paper}
+      - {name: OpenAI News, url: "https://openai.com/news/rss.xml"}
+      - {name: Google DeepMind, url: "https://deepmind.google/blog/rss.xml"}
+      - {name: Google Research, url: "https://research.google/blog/rss/"}
+      - {name: Hugging Face blog, url: "https://huggingface.co/blog/feed.xml"}
+      - {name: Microsoft Research, url: "https://www.microsoft.com/en-us/research/feed/"}
+      - {name: BAIR, url: "https://bair.berkeley.edu/blog/feed.xml"}
+    hf_orgs: [google, Qwen, deepseek-ai, meta-llama, mistralai, openai, nvidia, allenai]
+    keywords:
+      - large language model
+      - reinforcement learning
+      - diffusion model
+      - transformer
+      - representation learning
+      - generalization bound
+    search:
+      sites: [x.com, bsky.app, news.ycombinator.com, openreview.net, huggingface.co, anthropic.com, ai.meta.com, reddit.com/r/MachineLearning]
+      queries:
+        - new model release model card
+        - most discussed machine learning paper this week
+        - new LLM benchmark results
+
+  quant-finance:
+    name: Quantitative finance
+    tier: core
+    arxiv: [q-fin]
+    journals: [jf, jfe, rfs, jfqa, raps, jfec, mafi, finsto, quantfin]
+    nep: [nep-fmk, nep-rmg, nep-cfn]
+    nber: true
+    keywords:
+      - asset pricing
+      - factor model
+      - portfolio
+      - volatility
+      - option pricing
+      - market microstructure
+      - return predictability
+      - risk premium
+    search:
+      sites: [ssrn.com, x.com, bsky.app, quantocracy.com, risk.net, nber.org]
+      queries:
+        - new SSRN asset pricing paper
+        - quant finance paper discussion
+
+  marketing:
+    name: Marketing
+    tier: core
+    journals: [mksc, jmr, jm, jcr, qme, mnsc, ijrm]
+    nep: [nep-mkt]
+    keywords:
+      - marketing
+      - advertising
+      - consumer behavior
+      - consumer choice
+      - customer
+      - brand
+      - pricing strategy
+      - promotion
+      - retail
+      - recommender system
+    search:
+      sites: [ssrn.com, x.com, bsky.app, ama.org, informs.org]
+      queries:
+        - new SSRN marketing working paper
+        - quantitative marketing paper
+        - Marketing Science forthcoming

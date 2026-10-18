@@ -1,0 +1,58 @@
+# Built-in settings. Your config file (see `aster paths`) is deep-merged over these and over
+# the default fields in fields.yaml.
+
+timezone: null               # IANA name, e.g. Europe/London; null uses the system time zone
+
+interests: []                # phrases describing your own research; they rank items within a field
+
+follows:
+  authors: []                # names, or OpenAlex author ids (A123...)
+  labs: []                   # matched against title and abstract text
+  hf_orgs: []                # Hugging Face organizations
+  repos: []                  # GitHub owner/name; their releases are collected
+
+feeds: []                    # your own RSS/Atom feeds: {name, url, kind: paper|release, fields: [...]}
+
+journals: []                 # extra journals: {id, name, issn: [...]}; then list the id in a field
+
+sources:
+  arxiv:
+    enabled: true
+    extra_categories: []
+    reconcile_every_days: 7  # weekly OAI-PMH pass catches announcements a missed run skipped
+    reconcile_days: 7
+    reconcile_max_pages: 20
+  crossref:
+    enabled: true
+    overlap_days: 3
+    rows: 100
+    max_pages: 5
+  openalex:
+    enabled: true
+    overlap_days: 3
+    per_page: 100
+    max_pages: 2
+    max_queries: 40
+  nber:
+    enabled: true
+    stale_after_days: 9
+  nep:
+    enabled: true
+  openreview:
+    enabled: true            # needs OPENREVIEW_USERNAME and OPENREVIEW_PASSWORD
+    venues: []
+  feeds:
+    enabled: true
+    overlap_days: 2
+    first_run_days: 14
+  huggingface:
+    enabled: true
+    daily_papers: true       # Hugging Face Daily Papers; upvotes are recorded as signals
+    first_run_days: 14
+  github:
+    enabled: true
+    first_run_days: 14
+
+rank:
+  limit: 40                  # default number of candidates
+  window_days: 7             # default window when --since is not given

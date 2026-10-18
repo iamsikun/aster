@@ -1,0 +1,69 @@
+# Journal registry: every journal Aster can follow through Crossref.
+#
+# A field lists the journals it follows by `id` (see fields.yaml). Add a journal in your
+# config under `journals:` with the same keys. Every ISSN here was checked against
+# https://api.crossref.org/journals/<issn>; Crossref is queried with all of them.
+# (JMLR and TMLR register no DOIs with Crossref; JMLR is followed through its feed.)
+
+journals:
+  # --- economics ---
+  - {id: aer, area: economics, name: "American Economic Review", issn: [0002-8282, 1944-7981]}
+  - {id: ecta, area: economics, name: "Econometrica", issn: [0012-9682, 1468-0262]}
+  - {id: jpe, area: economics, name: "Journal of Political Economy", issn: [0022-3808, 1537-534X]}
+  - {id: qje, area: economics, name: "Quarterly Journal of Economics", issn: [0033-5533, 1531-4650]}
+  - {id: restud, area: economics, name: "Review of Economic Studies", issn: [0034-6527, 1467-937X]}
+  - {id: joe, area: economics, name: "Journal of Econometrics", issn: [0304-4076, 1872-6895]}
+  - {id: restat, area: economics, name: "Review of Economics and Statistics", issn: [0034-6535, 1530-9142]}
+  - {id: jbes, area: economics, name: "Journal of Business & Economic Statistics", issn: [0735-0015, 1537-2707]}
+  - {id: qe, area: economics, name: "Quantitative Economics", issn: [1759-7323, 1759-7331]}
+  - {id: aej-micro, area: economics, name: "American Economic Journal: Microeconomics", issn: [1945-7669, 1945-7685]}
+  - {id: te, area: economics, name: "Theoretical Economics", issn: [1933-6837, 1555-7561]}
+  - {id: et, area: economics, name: "Econometric Theory", issn: [0266-4666, 1469-4360]}
+  - {id: aej-applied, area: economics, name: "American Economic Journal: Applied Economics", issn: [1945-7782, 1945-7790]}
+  - {id: aej-policy, area: economics, name: "American Economic Journal: Economic Policy", issn: [1945-7731, 1945-774X]}
+  # --- finance ---
+  - {id: jf, area: finance, name: "Journal of Finance", issn: [0022-1082, 1540-6261]}
+  - {id: jfe, area: finance, name: "Journal of Financial Economics", issn: [0304-405X]}
+  - {id: rfs, area: finance, name: "Review of Financial Studies", issn: [0893-9454, 1465-7368]}
+  - {id: jfqa, area: finance, name: "Journal of Financial and Quantitative Analysis", issn: [0022-1090, 1756-6916]}
+  - {id: mafi, area: finance, name: "Mathematical Finance", issn: [0960-1627, 1467-9965]}
+  - {id: finsto, area: finance, name: "Finance and Stochastics", issn: [0949-2984, 1432-1122]}
+  - {id: quantfin, area: finance, name: "Quantitative Finance", issn: [1469-7688, 1469-7696]}
+  - {id: jfec, area: finance, name: "Journal of Financial Econometrics", issn: [1479-8409, 1479-8417]}
+  - {id: raps, area: finance, name: "Review of Asset Pricing Studies", issn: [2045-9920, 2045-9939]}
+  # --- marketing ---
+  - {id: jcr, area: marketing, name: "Journal of Consumer Research", issn: [0093-5301, 1537-5277]}
+  - {id: jm, area: marketing, name: "Journal of Marketing", issn: [0022-2429, 1547-7185]}
+  - {id: jmr, area: marketing, name: "Journal of Marketing Research", issn: [0022-2437, 1547-7193]}
+  - {id: mksc, area: marketing, name: "Marketing Science", issn: [0732-2399, 1526-548X]}
+  - {id: qme, area: marketing, name: "Quantitative Marketing and Economics", issn: [1570-7156, 1573-711X]}
+  - {id: ijrm, area: marketing, name: "International Journal of Research in Marketing", issn: [0167-8116]}
+  # --- management ---
+  - {id: tar, area: management, name: "The Accounting Review", issn: [0001-4826, 1558-7967]}
+  - {id: jae, area: management, name: "Journal of Accounting and Economics", issn: [0165-4101]}
+  - {id: jar, area: management, name: "Journal of Accounting Research", issn: [0021-8456, 1475-679X]}
+  - {id: amj, area: management, name: "Academy of Management Journal", issn: [0001-4273, 1948-0989]}
+  - {id: amr, area: management, name: "Academy of Management Review", issn: [0363-7425, 1930-3807]}
+  - {id: asq, area: management, name: "Administrative Science Quarterly", issn: [0001-8392, 1930-3815]}
+  - {id: isr, area: management, name: "Information Systems Research", issn: [1047-7047, 1526-5536]}
+  - {id: ijoc, area: management, name: "INFORMS Journal on Computing", issn: [0899-1499, 1526-5528, 1091-9856, 2326-3245]}
+  - {id: jibs, area: management, name: "Journal of International Business Studies", issn: [0047-2506, 1478-6990, 0047-8210]}
+  - {id: jom, area: management, name: "Journal of Operations Management", issn: [0272-6963, 1873-1317]}
+  - {id: mnsc, area: management, name: "Management Science", issn: [0025-1909, 1526-5501]}
+  - {id: msom, area: management, name: "Manufacturing & Service Operations Management", issn: [1523-4614, 1526-5498, 1526-5489]}
+  - {id: misq, area: management, name: "MIS Quarterly", issn: [0276-7783, 2162-9730]}
+  - {id: opre, area: management, name: "Operations Research", issn: [0030-364X, 1526-5463]}
+  - {id: orsc, area: management, name: "Organization Science", issn: [1047-7039, 1526-5455]}
+  - {id: poms, area: management, name: "Production and Operations Management", issn: [1059-1478, 1937-5956]}
+  - {id: smj, area: management, name: "Strategic Management Journal", issn: [0143-2095, 1097-0266]}
+  # --- statistics ---
+  - {id: jasa, area: statistics, name: "Journal of the American Statistical Association", issn: [0162-1459, 1537-274X]}
+  - {id: jrssb, area: statistics, name: "Journal of the Royal Statistical Society Series B", issn: [1369-7412, 1467-9868]}
+  - {id: aos, area: statistics, name: "Annals of Statistics", issn: [0090-5364, 2168-8966]}
+  - {id: biometrika, area: statistics, name: "Biometrika", issn: [0006-3444, 1464-3510]}
+  # --- machine-learning ---
+  - {id: natmachintell, area: machine-learning, name: "Nature Machine Intelligence", issn: [2522-5839]}
+  # --- science ---
+  - {id: nature, area: science, name: "Nature", issn: [0028-0836, 1476-4687]}
+  - {id: science, area: science, name: "Science", issn: [0036-8075, 1095-9203]}
+  - {id: pnas, area: science, name: "Proceedings of the National Academy of Sciences", issn: [0027-8424, 1091-6490]}

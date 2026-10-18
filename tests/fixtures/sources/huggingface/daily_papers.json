@@ -1,0 +1,71 @@
+[
+ {
+  "paper": {
+   "id": "2610.21185",
+   "authors": [
+    {
+     "name": "Kostas Triaridis"
+    },
+    {
+     "name": "Morris E. Sharp"
+    },
+    {
+     "name": "Nebojsa Jojic"
+    }
+   ],
+   "publishedAt": "2026-10-15T00:00:00.000Z",
+   "title": "Mine, Sample, Render: Test-Time Diversity Alignment Of Generative Models",
+   "summary": "Modern generative models produce high-quality individual outputs but struggle to sample diversely, even when explicitly instructed to do so. We introduce MINE-SAMPLE-RENDER (MSR), a test-time approach that externalizes the diversity into an explicit, corpus-derived sampling procedure. Our pipeline (i) mines an interpretable categorical schema from a corpus of real artifacts and supplies statistics for sampling; (ii) samples attribute configurations from the corpus-derived statistics; (iii) uses a generative model purely as a conditional renderer of a sampled configuration. Across weather report generation, user simulation, webpage design, text-to-image generation, and agent-generated 3D assets, we evaluate the diversity and output quality of MSR-guided generation and show that MSR improves alignment with corpus distributions and diversity of generated outputs.",
+   "upvotes": 5
+  },
+  "publishedAt": "2026-10-14T20:00:00.000Z",
+  "title": "Mine, Sample, Render: Test-Time Diversity Alignment Of Generative Models",
+  "numComments": 1
+ },
+ {
+  "paper": {
+   "id": "2610.21261",
+   "authors": [
+    {
+     "name": "Haotian Ma"
+    },
+    {
+     "name": "Ziye Mei"
+    },
+    {
+     "name": "Frederic Sala"
+    }
+   ],
+   "publishedAt": "2026-10-15T00:00:00.000Z",
+   "title": "Behavioral Compositionality of Sparse Autoencoder Representations",
+   "summary": "Sparse autoencoders (SAEs) represent model activations with sparse, linearly decoded features, but the downstream effects of those features need not compose additively. We introduce SAE Additivity Residuals (SAR), which measure the behavioral variation left unexplained above a chosen interaction order. Under independent feature subset sampling, population SAR is exactly the normalized energy of interactions above that order and bounds coalition ordering error for the optimal low order approximation. To distinguish compositionality associated with the SAE representation from that induced by downstream computation, we compare learned SAE coordinates with sum preserving random rotations of the same selected subspace and find lower first order residuals for the learned coordinates across all 18 model and behavior settings. The coordinates are nevertheless not fully additive: pairwise terms improve held out coalition ordering in every setting and outperform parameter matched models using randomly selected third order terms. In a combined steering experiment, pairwise modeling raises rank fidelity from 0.5874 to 0.7790 and reduces ordering error from 0.1444 to 0.0606. Together, these results show that SAE coordinates support comparatively compositional behavioral descriptions while faithful joint explanations and interventions still require interactions beyond individual feature effects. Code is available at https://github.com/OpenSAE/SAE-Behavioral-Compositionality.",
+   "upvotes": 106
+  },
+  "publishedAt": "2026-10-14T20:00:00.000Z",
+  "title": "Behavioral Compositionality of Sparse Autoencoder Representations",
+  "numComments": 2
+ },
+ {
+  "paper": {
+   "id": "2610.20680",
+   "authors": [
+    {
+     "name": "Sambit Ghosh"
+    },
+    {
+     "name": "Madelyn Mathai"
+    },
+    {
+     "name": "R. Venkatesh Babu"
+    }
+   ],
+   "publishedAt": "2026-10-14T00:00:00.000Z",
+   "title": "Diminishing Returns of Data in Sparse Autoencoders: Functional Behavior does not Guarantee Feature Reproducibility",
+   "summary": "Sparse autoencoders (SAEs) are typically trained on hundreds of millions to billions of activation tokens, yet little work has tested whether this scale is necessary. We study how much activation data SAEs need by training four SAE architectures on three language models with budgets ranging from 5M tokens to a 500M-token reference. We measure two notions of convergence: functional behavior on standard evaluations and one-to-one reproducibility of learned features. Functional data requirements are strongly metric-dependent: reconstruction often approaches the full-data reference at substantially smaller budgets, whereas feature reproducibility continues to improve with data. For Gemma-2-2B BatchTopK, the fraction of strictly matched features rises from 2\\% at 5M tokens to 29\\% at 50M. Data selection also matters: random sampling better preserves the original activation distribution and generally favors reconstruction, whereas diversity-based sampling frequently improves AutoInterp. A theoretical analysis separates statistical consistency of subsampled training from the stronger identifiability and optimization conditions required for one-to-one feature recovery. Our results show that SAE training can often be made far more data-efficient when budgets are matched to the goal, and feature-level claims are backed by explicit reproducibility checks, paving the way toward cheaper and more reliable SAE research.",
+   "upvotes": 1
+  },
+  "publishedAt": "2026-10-13T20:00:00.000Z",
+  "title": "Diminishing Returns of Data in Sparse Autoencoders: Functional Behavior does not Guarantee Feature Reproducibility",
+  "numComments": 2
+ }
+]
