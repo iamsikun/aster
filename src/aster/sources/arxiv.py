@@ -1,7 +1,8 @@
 """arXiv: daily category announcements (rss.arxiv.org Atom) plus weekly OAI-PMH reconciliation.
 
 The Atom feed distinguishes announce types: new, cross, replace, replace-cross. OAI-PMH
-catches anything the daily feed missed (e.g. a skipped run). All requests go through the
+catches anything the daily feed missed (a skipped run, a weekend start); the first run
+reconciles immediately. All requests go through the
 shared limiter (arXiv asks for at most one request every 3 seconds, one connection).
 """
 
@@ -39,6 +40,24 @@ def _abs_url(base: str) -> str:
     return f"https://arxiv.org/abs/{base}"
 
 
+def id_month(base: str) -> str | None:
+    """'2608.00123' -> '2026-08': the month of first submission, encoded in new-style ids."""
+    m = re.match(r"^(\d{2})(\d{2})\.\d{4,5}$", base)
+    return f"20{m.group(1)}-{m.group(2)}" if m else None
+
+
+def first_release(base: str, date_value: str | None) -> str | None:
+    """`date_value` if it falls in the id's month, else the id's month.
+
+    Replacements carry the date of the new version; dating them by the id's month keeps revised
+    old papers out of "new this week".
+    """
+    month = id_month(base)
+    if date_value and (month is None or date_value.startswith(month)):
+        return date_value
+    return month or date_value
+
+
 def parse_feed(xml_text: str) -> tuple[str | None, list[SourceRecord]]:
     """Parse an rss.arxiv.org Atom feed. Returns (feed <updated>, records)."""
     root = ET.fromstring(xml_text)
@@ -74,7 +93,7 @@ def parse_feed(xml_text: str) -> tuple[str | None, list[SourceRecord]]:
                 url=_abs_url(base),
                 pdf_url=f"https://arxiv.org/pdf/{base}{ver or ''}",
                 html_url=f"https://arxiv.org/html/{base}{ver or ''}",
-                released_date=published if is_new and ver in (None, "v1") else None,
+                released_date=published if is_new and ver in (None, "v1") else id_month(base),
                 version=ver,
                 announce_type=announce,
                 categories=cats,
@@ -125,7 +144,7 @@ def parse_oai(xml_text: str) -> tuple[list[SourceRecord], str | None]:
                 url=_abs_url(base),
                 pdf_url=f"https://arxiv.org/pdf/{base}",
                 html_url=f"https://arxiv.org/html/{base}",
-                released_date=iso_date(meta.findtext("ax:created", default=None, namespaces=NS)),
+                released_date=first_release(base, iso_date(meta.findtext("ax:created", default=None, namespaces=NS))),
                 categories=(meta.findtext("ax:categories", default="", namespaces=NS) or "").split(),
                 extra={"comments": comments or None, "journal_ref": jref or None, "via": "oai-pmh"},
             )
@@ -173,11 +192,9 @@ class ArxivCollector:
         # Weekly reconciliation
         every = int(cfg.get("reconcile_every_days", 7))
         last = checkpoint.get("last_reconcile")
-        # First run: start the clock instead of back-filling a week (back-fills are a separate, explicit job).
-        due = bool(last) and (run_date(ctx) - date.fromisoformat(last)).days >= every
-        if not last:
-            new_cp["last_reconcile"] = ctx.run_date
-        if due and cats:
+        # The first run catches up on the last `reconcile_days`, so a weekend start is not empty.
+        due = not last or (run_date(ctx) - date.fromisoformat(last)).days >= every
+        if due:
             rec, trunc = self.reconcile(
                 ctx, int(cfg.get("reconcile_days", 7)), cats, cfg.get("reconcile_max_pages", 20)
             )

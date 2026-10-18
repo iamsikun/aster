@@ -5,7 +5,7 @@ from conftest import FIX
 from aster import ids as idmod
 from aster.records import Checkpoint, Signal, SourceHealth, SourceRecord
 from aster.sources import COLLECTORS, collect
-from aster.sources.arxiv import ArxivCollector, oai_set, parse_feed, parse_oai
+from aster.sources.arxiv import ArxivCollector, first_release, id_month, oai_set, parse_feed, parse_oai
 from aster.sources.base import FetchResult
 from aster.sources.crossref import load_journals, parse_item
 from aster.sources.feeds import parse_feed as parse_rss
@@ -23,7 +23,7 @@ def test_arxiv_feed_announce_types_and_versions():
     types = {r.announce_type for r in recs}
     assert {"new", "cross", "replace", "replace-cross"} <= types
     rep = next(r for r in recs if r.announce_type == "replace")
-    assert rep.version and rep.version != "v1" and rep.released_date is None
+    assert rep.version and rep.version != "v1" and rep.released_date == id_month(rep.source_id)
     new = next(r for r in recs if r.announce_type == "new")
     assert new.released_date == "2026-10-09" and new.ids == {"arxiv": new.source_id}
     assert new.abstract and not new.abstract.startswith("arXiv:")
@@ -37,6 +37,12 @@ def test_arxiv_oai_parse():
     with_doi = next(r for r in recs if "doi" in r.ids)
     assert with_doi.ids["arxiv"] == "2110.05720" and with_doi.authors[0] == "Bradley Rava"
     assert oai_set("stat.ME") == "stat:stat:ME" and oai_set("cs.LG") == "cs:cs:LG" and oai_set("q-fin") == "q-fin"
+
+
+def test_arxiv_dates_revisions_by_id_month():
+    assert id_month("2608.00123") == "2026-08" and id_month("math/0601001") is None
+    assert first_release("2610.01234", "2026-10-13") == "2026-10-13"
+    assert first_release("2608.00123", "2026-10-13") == "2026-08"  # a replacement, not new
 
 
 def test_crossref_parse_strips_jats():

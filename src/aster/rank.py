@@ -112,7 +112,7 @@ def candidates(
     for w in works:
         if w.work_id in shown and not include_shown:
             continue
-        kw_hits = keyword_fields(list(active.values()), work_text(w))
+        kw_hits = keyword_fields(list(active.values()), w.title, w.abstract or "")
         fields = [f for f in w.fields if f in active]
         for fid, _ in kw_hits:
             if fid not in fields:

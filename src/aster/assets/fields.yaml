@@ -8,7 +8,8 @@
 # openreview: venue ids such as ICLR.cc/2027/Conference (needs an OpenReview login)
 # feeds: RSS/Atom feeds; kind is paper (a journal or preprint feed) or release (posts, model cards)
 # hf_orgs: Hugging Face organizations whose new models are collected
-# keywords: phrases that place an item from any source into this field
+# keywords: phrases that place an item from any source into this field (one in the title, or
+#   two in the abstract)
 # search: hints the agent uses when it searches the web for this field
 
 fields:
@@ -95,11 +96,12 @@ fields:
       - advertising
       - consumer behavior
       - consumer choice
-      - customer
-      - brand
+      - customer lifetime value
+      - customer churn
+      - brand equity
       - pricing strategy
-      - promotion
-      - retail
+      - sales promotion
+      - retailing
       - recommender system
     search:
       sites: [ssrn.com, x.com, bsky.app, ama.org, informs.org]

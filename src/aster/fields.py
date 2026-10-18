@@ -118,12 +118,20 @@ def venue_index(fields: list[Field]) -> dict[str, list[str]]:
     return out
 
 
-def keyword_fields(fields: list[Field], text: str) -> list[tuple[str, str]]:
-    """(field id, keyword) pairs whose keyword phrase occurs in `text`."""
-    low = f" {' '.join(text.lower().split())} "
+def _contains(text: str, phrase: str) -> bool:
+    return f" {phrase.lower()}" in f" {' '.join(text.lower().split())} "
+
+
+def keyword_fields(fields: list[Field], title: str, abstract: str = "") -> list[tuple[str, str]]:
+    """(field id, keyword) pairs that place an item in a field.
+
+    One keyword in the title is enough; in the abstract alone it takes two distinct keywords of
+    the same field, so a passing mention does not move an item into a field.
+    """
     out = []
     for f in fields:
-        for kw in f.keywords:
-            if f" {kw.lower()}" in low:
-                out.append((f.id, kw))
+        in_title = [kw for kw in f.keywords if _contains(title, kw)]
+        in_abstract = [kw for kw in f.keywords if kw not in in_title and _contains(abstract, kw)]
+        if in_title or len(in_abstract) >= 2:
+            out += [(f.id, kw) for kw in [*in_title, *in_abstract]]
     return out
