@@ -61,8 +61,7 @@ def test_init_paths_fields_and_doctor(run, tmp_path, monkeypatch):
     code, out = run("paths", "--json")
     assert json.loads(out)["config"] == str(new)
     code, out = run("fields", "--json")
-    fields = json.loads(out)["fields"]
-    assert [f["id"] for f in fields if f["tier"] != "mute"] == [
+    assert [f["id"] for f in json.loads(out)["fields"]] == [
         "economics",
         "machine-learning",
         "quant-finance",

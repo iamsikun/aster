@@ -8,8 +8,6 @@ and `null` removes an entry. Edit it only when the user asks, show them the chan
 ## Fields
 
 The defaults are `economics`, `machine-learning`, `quant-finance` and `marketing`, all `core`.
-`probability`, `applied-math`, `mathematics` and `physics` are packaged but muted; set a tier to
-follow one.
 
 ```yaml
 fields:
