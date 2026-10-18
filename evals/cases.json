@@ -12,6 +12,22 @@
     "must_not": ["invent engagement numbers", "list items without links", "pad quiet fields"]
   },
   {
+    "id": "first-run-setup",
+    "expect_activation": true,
+    "setup": "ASTER_CONFIG points at a file that does not exist",
+    "prompt": "What's new in my fields this week?",
+    "expect": [
+      "notices `setup.needed` in `aster fields --json`",
+      "asks which fields, journals, conferences, feeds, interests and people to follow before the first brief, offering the defaults as a starting point",
+      "says the defaults are in use if it goes ahead without answers"
+    ],
+    "must_not": [
+      "write a config file before the user answers",
+      "look for or use a config file other than ASTER_CONFIG",
+      "guess ISSNs or OpenReview venue ids"
+    ]
+  },
+  {
     "id": "marketing-brief",
     "expect_activation": true,
     "prompt": "Anything interesting in quantitative marketing since Monday?",
