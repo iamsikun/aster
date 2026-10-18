@@ -8,6 +8,8 @@ Aster uses semantic versioning:
 
 ## Unreleased
 
+## 0.2.0 — 2026-10-18
+
 - Ask new users what to follow. Until the config file has a `fields:` section, `aster fields`,
   `candidates` and `doctor --json` report `setup.needed`, text commands print a hint, and the
   skill runs a first-time setup that asks for fields, journals, conferences and feeds. The
