@@ -24,9 +24,10 @@ Keep reports short. A quiet week is a valid answer; padding is not.
 
 ## Start
 
-1. Check the command: `aster --version`. If it is missing, look for the repository two levels
-   above this skill's directory (it contains `pyproject.toml`) and use
-   `uv run --project <that directory> aster ...`. If neither works, continue in web-only mode:
+1. Check the command: `aster --version`. If it is missing, find the Aster repository, which
+   contains `pyproject.toml`: the installer's clone at `~/.local/share/aster`, or two levels
+   above this skill's directory after resolving symlinks (`realpath <skill dir>/../..`). Then
+   use `uv run --project <repository> aster ...`. If neither works, continue in web-only mode:
    do the searches below, say once that collection, ranking and memory are off, and suggest
    installing with
    `curl -fsSL https://raw.githubusercontent.com/iamsikun/aster/stable/install.sh | bash`.

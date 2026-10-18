@@ -8,6 +8,8 @@ at first and says why (`reasons`). Features:
 - interests: BM25 similarity of title and abstract to the user's `interests`
 - follows: a followed author, lab, Hugging Face organization or repository
 - signals: recorded discussion (posts, threads, upvotes) linked to the work
+- search-only: a work seen only through OpenAlex keyword searches ranks lower, because those
+  searches reach any outlet, not just the fields' own sources
 """
 
 from __future__ import annotations
@@ -34,6 +36,8 @@ W_INTEREST = 1.0
 W_FOLLOW = 1.5
 W_SIGNAL = 0.3  # per signal, up to MAX_SIGNALS
 MAX_SIGNALS = 5
+W_SEARCH_ONLY = -0.5
+SEARCH_ONLY_SOURCES = ("openalex|",)
 
 
 @dataclass
@@ -139,6 +143,9 @@ def candidates(
         if c.signals:
             c.score += W_SIGNAL * min(len(c.signals), MAX_SIGNALS)
             c.reasons.append(f"signals:{len(c.signals)}")
+        if w.source_keys and all(k.startswith(SEARCH_ONLY_SOURCES) for k in w.source_keys) and not hits:
+            c.score += W_SEARCH_ONLY
+            c.reasons.append("search-only:openalex")
         out.append(c)
     # Highest score first; among equal scores, newest first; then by id for a stable order.
     out.sort(key=lambda c: c.work.work_id)

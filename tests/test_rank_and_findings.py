@@ -51,6 +51,22 @@ def test_ranking_reasons_and_filters(ctx):
     assert shown and candidate_json(shown[0])["shown"] is True
 
 
+def test_openalex_only_items_rank_below_field_sources(ctx):
+    journal = put(ctx, "2610.8", "Pricing paper in a field journal", fields=["marketing"])
+    rec = SourceRecord(
+        source="openalex",
+        source_id="W1",
+        title="Pricing paper from anywhere",
+        ids={"openalex": "W1"},
+        released_date="2026-10-05",
+        fields=["marketing"],
+    )
+    resolve(ctx.store, [rec])
+    found = candidates(ctx, "2026-10-01", field_id="marketing")
+    assert [c.work.work_id for c in found] == [journal, rec.work_id]
+    assert "search-only:openalex" in found[1].reasons
+
+
 def test_muted_fields_are_left_out(ctx):
     wid = put(ctx, "2610.7", "A marketing paper", fields=["marketing"])
     ctx.config.fields["marketing"] = ctx.config.fields["marketing"].model_copy(update={"tier": "mute"})

@@ -22,7 +22,8 @@ First release of Aster, rebuilt from the Lark briefing pipeline (whose last stat
   Daily Papers) and RSS/Atom feeds, configured by research fields. The defaults are economics,
   machine learning, quantitative finance and marketing.
 - Rank candidates deterministically with stated reasons: field tier, keywords, interests,
-  follows and discussion signals. Output is versioned JSON (`aster.candidates/1`).
+  follows and discussion signals, with items seen only through OpenAlex keyword searches
+  ranked lower. Output is versioned JSON (`aster.candidates/1`).
 - Remove the model-driven screening, reading, budgets, email delivery and the private data
   repository from Lark.
 - Add the installer (skill links, uv-installed command, daily updates from `stable`) and the
