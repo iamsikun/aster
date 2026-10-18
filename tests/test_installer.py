@@ -158,6 +158,16 @@ def test_uninstall_removes_clean_owned_published_clone(installer):
     assert not (root / "clone").exists()
 
 
+def test_uninstall_ignores_python_bytecode(installer):
+    root, run = installer
+    assert run("cmd_install --no-auto-update --no-cli").returncode == 0
+    (root / "clone/.git/info/exclude").write_text("__pycache__/\n")  # as the real .gitignore does
+    (root / "clone/src/aster/__pycache__").mkdir(parents=True)
+    (root / "clone/src/aster/__pycache__/cli.cpython-312.pyc").write_bytes(b"")
+    assert run("cmd_uninstall").returncode == 0
+    assert not (root / "clone").exists()
+
+
 def test_update_preserves_dirty_clone_even_when_changes_do_not_overlap(installer):
     root, run = installer
     assert run("cmd_install --no-auto-update --no-cli").returncode == 0

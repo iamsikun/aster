@@ -340,7 +340,7 @@ cmd_uninstall() {
       say "kept $ASTER_HOME because clone ownership is not recorded (including older installs)"
     elif ! git -C "$ASTER_HOME" status --porcelain >/dev/null 2>&1; then
       say "kept $ASTER_HOME because its Git state could not be checked"
-    elif [ -n "$(git -C "$ASTER_HOME" status --porcelain --ignored)" ]; then
+    elif [ -n "$(git -C "$ASTER_HOME" status --porcelain --ignored | grep -v '__pycache__/$')" ]; then
       say "kept $ASTER_HOME because it has local or ignored files; delete it yourself when done"
     elif ! git -C "$ASTER_HOME" show-ref --verify --quiet refs/remotes/origin/"$ASTER_REF"; then
       say "kept $ASTER_HOME because the tracked remote branch cannot establish published history"
