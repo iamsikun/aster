@@ -76,3 +76,46 @@ def test_lookup_missing_and_bad_input(run):
     assert run("lookup", "arxiv:2999.00001")[0] == 1
     assert run("add", stdin="{not json")[0] == 2
     assert run("candidates", "--field", "nope")[0] == 2
+
+
+def test_candidates_match_terms_and_first_seen(run, tmp_path):
+    assert run("refresh", "--offline", "--json")[0] == 0
+    code, out = run("candidates", "--since", "2026-01-01", "--json", "--limit", "500")
+    items = json.loads(out)["items"]
+    term = items[0]["title"].split()[0].lower()
+    expected = {
+        it["work_id"]
+        for it in items
+        if f" {term}" in f" {it['title'].lower()}" or f" {term}" in f" {(it['abstract'] or '').lower()}"
+    }
+
+    terms = tmp_path / "terms.txt"
+    terms.write_text(f"{term}\n\nno such phrase anywhere\n")
+    code, out = run("candidates", "--since", "2026-01-01", "--json", "--limit", "500", "--match-file", str(terms))
+    data = json.loads(out)
+    assert code == 0 and {it["work_id"] for it in data["items"]} == expected
+    assert all(f"match:{term}" in it["reasons"] for it in data["items"])
+    assert data["match"] == [term, "no such phrase anywhere"]
+
+    code, out = run("candidates", "--since", "2026-01-01", "--json", "--match", "no such phrase anywhere")
+    assert json.loads(out)["items"] == []
+
+    first_seen = max(it["first_seen"] for it in items)
+    code, out = run("candidates", "--since", "2026-01-01", "--json", "--limit", "500", "--first-seen-since", first_seen)
+    assert {it["first_seen"] for it in json.loads(out)["items"]} == {first_seen}
+    code, out = run("candidates", "--since", "2026-01-01", "--json", "--first-seen-since", "2999-01-01T00:00:00-05:00")
+    assert json.loads(out)["items"] == []
+    assert run("candidates", "--json", "--first-seen-since", "not a date")[0] == 2
+
+
+def test_doctor_json_reports_sources_and_last_success(run):
+    code, out = run("doctor", "--json")
+    before = json.loads(out)
+    assert before["counts"] is None and before["last_success"] is None and before["sources"] == []
+    assert run("refresh", "--offline", "--json")[0] == 0
+    code, out = run("doctor", "--json")
+    report = json.loads(out)
+    assert report["counts"]["works"] > 10 and report["fields"]["physics"] == "mute"
+    ok = [s for s in report["sources"] if s["enabled"] and s["status"] == "ok"]
+    assert ok and report["last_success"] == max(s["last_success"] for s in report["sources"] if s["last_success"])
+    assert code == (1 if report["problems"] else 0) and report["ok"] == (not report["problems"])

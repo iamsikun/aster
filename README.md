@@ -93,7 +93,11 @@ The packaged defaults and the full journal registry are in
 | `aster seen <work id>...` | Mark items as shown |
 
 `aster candidates --json` returns a versioned format (`aster.candidates/1`), so schedulers
-and other tools can use it without an agent. Data lives in `~/.local/share/aster-data` as an
+and other tools can use it without an agent. A tool that keeps its own record of what it has
+seen, such as a knowledge-base gardener, can add `--include-shown`, `--match-file <phrases>`
+(keep only items whose title or abstract contains one of them) and `--first-seen-since <time>`
+(only items collected since its last run). `aster doctor --json` reports when each source last
+succeeded. Data lives in `~/.local/share/aster-data` as an
 append-only log with a rebuildable index. `aster paths` shows the locations.
 
 ## Related

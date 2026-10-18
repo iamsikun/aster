@@ -8,6 +8,10 @@ Aster uses semantic versioning:
 
 ## Unreleased
 
+- Add `aster candidates --match`, `--match-file` and `--first-seen-since`, so a scheduler
+  can ask for new items on its own topics since its last run. The JSON gains `match` and
+  `window.first_seen_since`.
+- Add `aster doctor --json`, with each source's last success.
 - Add muted `probability`, `applied-math`, `mathematics` and `physics` fields, with 24
   journals in the registry (Annals of Probability, Mathematical Programming, SIAM journals,
   Annals of Mathematics, Physical Review Letters and others).

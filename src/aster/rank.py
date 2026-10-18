@@ -10,6 +10,10 @@ at first and says why (`reasons`). Features:
 - signals: recorded discussion (posts, threads, upvotes) linked to the work
 - search-only: a work seen only through OpenAlex keyword searches ranks lower, because those
   searches reach any outlet, not just the fields' own sources
+
+`match` phrases (from a caller such as a knowledge-base gardener) filter rather than rank: a
+work is kept only when one appears in its title or abstract, and each hit is listed in
+`reasons`.
 """
 
 from __future__ import annotations
@@ -21,7 +25,7 @@ from rank_bm25 import BM25Okapi
 
 from aster.config import Follows
 from aster.context import Context
-from aster.fields import TIER_WEIGHT, keyword_fields
+from aster.fields import TIER_WEIGHT, contains, keyword_fields
 from aster.records import Shown, Signal, Work
 
 _STOP = set(
@@ -99,12 +103,17 @@ def candidates(
     field_id: str | None = None,
     limit: int | None = None,
     include_shown: bool = False,
+    match: list[str] | None = None,
+    first_seen_since: str | None = None,
 ) -> list[Candidate]:
     cfg = ctx.config
     active = {f.id: f for f in cfg.active_fields()}
     if field_id and field_id not in cfg.fields:
         raise ValueError(f"unknown field {field_id!r}; choose from {', '.join(cfg.fields)}")
     works = [w for w in ctx.store.all(Work) if work_date(w) >= since and (not until or work_date(w) <= until)]
+    if first_seen_since:
+        works = [w for w in works if w.first_seen >= first_seen_since]
+    phrases = list(dict.fromkeys(p.strip() for p in match or [] if p.strip()))
     shown = {s.work_id for s in ctx.store.all(Shown)}
     signals: dict[str, list[Signal]] = {}
     for s in ctx.store.all(Signal, "json_extract(json, '$.work_id') IS NOT NULL"):
@@ -126,6 +135,9 @@ def candidates(
             continue
         if not fields and not hits:
             continue
+        matched = [p for p in phrases if contains(w.title, p) or contains(w.abstract or "", p)]
+        if phrases and not matched:
+            continue
         c = Candidate(work=w, fields=fields, signals=signals.get(w.work_id, []), shown=w.work_id in shown)
         if fields:
             c.score += max(TIER_WEIGHT[active[f].tier] for f in fields)
@@ -146,6 +158,7 @@ def candidates(
         if w.source_keys and all(k.startswith(SEARCH_ONLY_SOURCES) for k in w.source_keys) and not hits:
             c.score += W_SEARCH_ONLY
             c.reasons.append("search-only:openalex")
+        c.reasons += [f"match:{p}" for p in matched]
         out.append(c)
     # Highest score first; among equal scores, newest first; then by id for a stable order.
     out.sort(key=lambda c: c.work.work_id)

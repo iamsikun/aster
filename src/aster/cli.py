@@ -8,7 +8,7 @@ import json
 import logging
 import os
 import sys
-from datetime import date, timedelta
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -21,6 +21,7 @@ from aster.ids import parse_ref
 from aster.rank import candidate_json, candidates, signal_json, work_date
 from aster.records import Checkpoint, Shown, Signal, SourceHealth, SourceRecord, Version, Work
 from aster.sources import COLLECTORS, collect
+from aster.utils.timez import tz
 
 CANDIDATES_SCHEMA = "aster.candidates/1"
 
@@ -47,6 +48,22 @@ def _find(ctx: Context, ref: str) -> Work | None:
         return ctx.store.get(Work, ref)
     ids = parse_ref(ref)
     return find_work(ctx.store, ids) if ids else None
+
+
+def _utc(value: str) -> str:
+    """An ISO date or time as a UTC timestamp comparable with `first_seen`; a bare date or a time
+    without an offset is local time."""
+    stamp = datetime.fromisoformat(value)
+    stamp = stamp if stamp.tzinfo else stamp.replace(tzinfo=tz())
+    return stamp.astimezone(UTC).isoformat(timespec="seconds")
+
+
+def _phrases(args) -> list[str]:
+    out = list(args.match or [])
+    for path in args.match_file or []:
+        text = sys.stdin.read() if path == "-" else Path(path).read_text(encoding="utf-8")
+        out += text.splitlines()
+    return [p.strip() for p in out if p.strip()]
 
 
 # ---------------- commands ----------------
@@ -165,7 +182,14 @@ def cmd_candidates(args) -> int:
     limit = args.limit or int(ctx.config.get("rank.limit", 40))
     try:
         found = candidates(
-            ctx, since, until=args.until, field_id=args.field, limit=limit, include_shown=args.include_shown
+            ctx,
+            since,
+            until=args.until,
+            field_id=args.field,
+            limit=limit,
+            include_shown=args.include_shown,
+            match=_phrases(args),
+            first_seen_since=_utc(args.first_seen_since) if args.first_seen_since else None,
         )
     except ValueError as e:
         print(str(e), file=sys.stderr)
@@ -176,7 +200,8 @@ def cmd_candidates(args) -> int:
             {
                 "schema": CANDIDATES_SCHEMA,
                 "generated_at": ctx.run_date,
-                "window": {"since": since, "until": args.until},
+                "window": {"since": since, "until": args.until, "first_seen_since": args.first_seen_since},
+                "match": _phrases(args) if args.match or args.match_file else None,
                 "field": args.field,
                 "fields": {f.id: {"name": f.label, "tier": f.tier} for f in ctx.config.fields.values()},
                 "sources": [
@@ -267,17 +292,16 @@ def cmd_seen(args) -> int:
 
 
 def cmd_doctor(args) -> int:
-    problems = []
     try:
         cfg = load_config(args.config, args.data_dir)
     except ConfigError as e:
-        print(f"config: {e}")
+        if args.json:
+            _print_json({"ok": False, "problems": [f"config: {e}"]})
+        else:
+            print(f"config: {e}")
         return 1
-    print(f"config  {cfg.path}{'' if cfg.path.exists() else '  (not created; defaults in use)'}")
-    print(f"data    {cfg.data_dir}")
-    active = cfg.active_fields()
-    print(f"fields  {', '.join(f'{f.id} ({f.tier})' for f in cfg.fields.values()) or 'none'}")
-    if not active:
+    problems = []
+    if not cfg.active_fields():
         problems.append("no active fields: set a field's tier to core or skim")
     env = {
         "ASTER_CONTACT_EMAIL": "polite pools of Crossref and OpenAlex",
@@ -285,23 +309,59 @@ def cmd_doctor(args) -> int:
         "OPENREVIEW_USERNAME": "OpenReview venues",
         "GITHUB_TOKEN": "higher GitHub limits",
     }
-    for name, why in env.items():
-        print(f"env     {name}: {'set' if os.getenv(name) else 'not set'} ({why})")
+    sources, counts = [], None
     if cfg.data_dir.exists():
         ctx = open_context(args.config, args.data_dir)
         health = _latest_health(ctx)
         for name in COLLECTORS:
-            enabled = cfg.get(f"sources.{name}.enabled", False)
-            h = health.get(name)
-            cp = ctx.store.get(Checkpoint, name)
-            state = f"{h.status} at {h.run_at}" + (f" ({h.error})" if h.error else "") if h else "never run"
-            last_ok = f", last success {cp.last_success}" if cp and cp.last_success else ""
-            print(f"source  {name:<12} {'on ' if enabled else 'off'} {state}{last_ok}")
+            enabled = bool(cfg.get(f"sources.{name}.enabled", False))
+            h, cp = health.get(name), ctx.store.get(Checkpoint, name)
+            sources.append(
+                {
+                    "source": name,
+                    "enabled": enabled,
+                    "status": h.status if h else None,
+                    "checked_at": h.run_at if h else None,
+                    "error": h.error if h else None,
+                    "last_success": cp.last_success if cp else None,
+                }
+            )
             if enabled and h and h.status == "failed":
                 problems.append(f"{name} failed on its last run")
-        print(
-            f"catalog {ctx.store.count(Work)} works, {ctx.store.count(Signal)} signals, {ctx.store.count(Shown)} shown"
+        counts = {"works": ctx.store.count(Work), "signals": ctx.store.count(Signal), "shown": ctx.store.count(Shown)}
+    successes = [s["last_success"] for s in sources if s["enabled"] and s["last_success"]]
+    if args.json:
+        _print_json(
+            {
+                "ok": not problems,
+                "version": __version__,
+                "config": str(cfg.path),
+                "config_exists": cfg.path.exists(),
+                "data_dir": str(cfg.data_dir),
+                "fields": {f.id: f.tier for f in cfg.fields.values()},
+                "env": {name: bool(os.getenv(name)) for name in env},
+                "sources": sources,
+                "last_success": max(successes) if successes else None,
+                "counts": counts,
+                "problems": problems,
+            }
         )
+        return 1 if problems else 0
+    print(f"config  {cfg.path}{'' if cfg.path.exists() else '  (not created; defaults in use)'}")
+    print(f"data    {cfg.data_dir}")
+    print(f"fields  {', '.join(f'{f.id} ({f.tier})' for f in cfg.fields.values()) or 'none'}")
+    for name, why in env.items():
+        print(f"env     {name}: {'set' if os.getenv(name) else 'not set'} ({why})")
+    for s in sources:
+        state = (
+            f"{s['status']} at {s['checked_at']}" + (f" ({s['error']})" if s["error"] else "")
+            if s["status"]
+            else "never run"
+        )
+        last_ok = f", last success {s['last_success']}" if s["last_success"] else ""
+        print(f"source  {s['source']:<12} {'on ' if s['enabled'] else 'off'} {state}{last_ok}")
+    if counts:
+        print(f"catalog {counts['works']} works, {counts['signals']} signals, {counts['shown']} shown")
     else:
         print("catalog empty (run `aster refresh`)")
     for p in problems:
@@ -345,6 +405,9 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--field", help="only this field")
     s.add_argument("--limit", type=int)
     s.add_argument("--include-shown", action="store_true", help="include items already shown")
+    s.add_argument("--match", action="append", help="keep only items with this phrase in title or abstract")
+    s.add_argument("--match-file", action="append", help="phrases for --match, one per line (- for stdin)")
+    s.add_argument("--first-seen-since", help="only items first collected at or after this ISO date or time")
     s.add_argument("--json", action="store_true")
     s.set_defaults(func=cmd_candidates)
 
@@ -362,6 +425,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.set_defaults(func=cmd_seen)
 
     s = sub.add_parser("doctor", help="check configuration and the last run of each source")
+    s.add_argument("--json", action="store_true")
     s.set_defaults(func=cmd_doctor)
     return p
 

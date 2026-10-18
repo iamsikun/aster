@@ -118,7 +118,7 @@ def venue_index(fields: list[Field]) -> dict[str, list[str]]:
     return out
 
 
-def _contains(text: str, phrase: str) -> bool:
+def contains(text: str, phrase: str) -> bool:
     return f" {phrase.lower()}" in f" {' '.join(text.lower().split())} "
 
 
@@ -130,8 +130,8 @@ def keyword_fields(fields: list[Field], title: str, abstract: str = "") -> list[
     """
     out = []
     for f in fields:
-        in_title = [kw for kw in f.keywords if _contains(title, kw)]
-        in_abstract = [kw for kw in f.keywords if kw not in in_title and _contains(abstract, kw)]
+        in_title = [kw for kw in f.keywords if contains(title, kw)]
+        in_abstract = [kw for kw in f.keywords if kw not in in_title and contains(abstract, kw)]
         if in_title or len(in_abstract) >= 2:
             out += [(f.id, kw) for kw in [*in_title, *in_abstract]]
     return out

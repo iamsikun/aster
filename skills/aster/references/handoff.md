@@ -12,4 +12,6 @@ Aster finds things worth reading; it does not read them in depth or keep notes.
 - **Scheduling.** Aster has no scheduler. A scheduled job (cron, a gardener, CI) can run
   `aster refresh` and `aster candidates --json`, and then an agent with this skill for the web
   searches and the write-up. Mark items as shown with `aster seen ... --context <job>` so
-  interactive briefs do not repeat them.
+  interactive briefs do not repeat them. A job that tracks its own discoveries can instead pass
+  `--include-shown --match-file <topics> --first-seen-since <last run>`, and check freshness with
+  `aster doctor --json`.
