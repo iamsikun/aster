@@ -114,7 +114,7 @@ def test_doctor_json_reports_sources_and_last_success(run):
     assert run("refresh", "--offline", "--json")[0] == 0
     code, out = run("doctor", "--json")
     report = json.loads(out)
-    assert report["counts"]["works"] > 10 and report["fields"]["physics"] == "mute"
+    assert report["counts"]["works"] > 10 and report["fields"]["economics"] == "core"
     ok = [s for s in report["sources"] if s["enabled"] and s["status"] == "ok"]
     assert ok and report["last_success"] == max(s["last_success"] for s in report["sources"] if s["last_success"])
     assert code == (1 if report["problems"] else 0) and report["ok"] == (not report["problems"])
