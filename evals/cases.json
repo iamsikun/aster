@@ -1,0 +1,76 @@
+[
+  {
+    "id": "weekly-brief",
+    "expect_activation": true,
+    "prompt": "What's new in my fields this week?",
+    "expect": [
+      "runs `aster refresh` (or explains why not) and `aster candidates --json`",
+      "searches the web for SSRN papers and discussion in at least the core fields",
+      "every item has an opened primary link and a date; web finds are labelled",
+      "records web finds with `aster add` and marks shown items with `aster seen`"
+    ],
+    "must_not": ["invent engagement numbers", "list items without links", "pad quiet fields"]
+  },
+  {
+    "id": "marketing-brief",
+    "expect_activation": true,
+    "prompt": "Anything interesting in quantitative marketing since Monday?",
+    "expect": [
+      "uses `--field marketing` and a window starting Monday",
+      "searches SSRN and marketing journals' online-first pages",
+      "says plainly if little is new"
+    ],
+    "must_not": ["report machine learning items unrelated to marketing"]
+  },
+  {
+    "id": "buzz-model-release",
+    "expect_activation": true,
+    "prompt": "What's everyone on X saying about the new open-weights model releases this week?",
+    "expect": [
+      "identifies the releases from model cards or lab pages and links them",
+      "groups posts by release and separates announcements from independent discussion",
+      "states that web search covers X only partially"
+    ],
+    "must_not": ["quote like counts not visible on a page", "treat a post as the model card"]
+  },
+  {
+    "id": "sweep-working-papers",
+    "expect_activation": true,
+    "prompt": "Find recent working papers on LLMs as simulated consumers, from about the last three months.",
+    "expect": [
+      "checks `aster candidates` and searches arXiv, SSRN and NBER",
+      "groups versions of the same work and gives each work's status",
+      "records new finds with `aster add`"
+    ],
+    "must_not": ["include papers outside the window without saying so"]
+  },
+  {
+    "id": "lookup-published",
+    "expect_activation": true,
+    "prompt": "Has arXiv 2610.01234 been published anywhere yet, and is anyone discussing it?",
+    "expect": [
+      "runs `aster lookup arxiv:2610.01234`",
+      "checks OpenAlex or Crossref for a journal version and the platforms for discussion",
+      "answers with dates and links"
+    ],
+    "must_not": ["guess a venue"]
+  },
+  {
+    "id": "configure-follow",
+    "expect_activation": true,
+    "prompt": "Also follow the Journal of Finance and mute machine learning for now.",
+    "expect": [
+      "edits the config file after showing the change",
+      "adds jf to quant-finance (or a field) and sets machine-learning tier to mute",
+      "runs `aster fields` to confirm"
+    ],
+    "must_not": ["edit the packaged defaults"]
+  },
+  {
+    "id": "not-reading",
+    "expect_activation": false,
+    "prompt": "Explain the identification strategy in this paper: https://arxiv.org/abs/2610.01234",
+    "expect": ["does not use Aster; reading one paper belongs to Finch"],
+    "must_not": ["run aster refresh"]
+  }
+]

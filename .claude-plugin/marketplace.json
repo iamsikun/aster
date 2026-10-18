@@ -1,0 +1,14 @@
+{
+  "name": "aster",
+  "owner": {
+    "name": "Sikun Xu"
+  },
+  "description": "Aster: a research-scouting skill for AI coding agents that reports new papers, working papers and releases in your fields, and the discussion around them.",
+  "plugins": [
+    {
+      "name": "aster",
+      "source": "./",
+      "description": "Research-scouting skill: new journal articles, working papers, lab posts and model releases in your fields, and what is being discussed, with verified links."
+    }
+  ]
+}

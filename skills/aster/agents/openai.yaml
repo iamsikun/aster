@@ -1,0 +1,6 @@
+interface:
+  display_name: "Aster"
+  short_description: "What is new and being discussed in your research fields"
+  default_prompt: "Use $aster to brief me on what is new and being discussed in my fields this week."
+policy:
+  allow_implicit_invocation: true

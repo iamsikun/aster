@@ -1,0 +1,24 @@
+{
+  "name": "aster",
+  "version": "0.1.0",
+  "description": "Find what is new and what is being discussed in your research fields: journal articles, working papers, lab posts and model releases, with verified links.",
+  "author": {
+    "name": "Sikun Xu"
+  },
+  "homepage": "https://github.com/iamsikun/aster",
+  "repository": "https://github.com/iamsikun/aster",
+  "license": "MIT",
+  "keywords": [
+    "research",
+    "papers",
+    "arxiv",
+    "ssrn",
+    "working-papers",
+    "literature-monitoring",
+    "research-brief",
+    "economics",
+    "machine-learning",
+    "finance",
+    "marketing"
+  ]
+}
