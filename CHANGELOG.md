@@ -8,6 +8,8 @@ Aster uses semantic versioning:
 
 ## Unreleased
 
+- The skill no longer names a particular knowledge base; it uses whichever one is connected.
+
 ## 0.2.0 — 2026-10-18
 
 - Ask new users what to follow. Until the config file has a `fields:` section, `aster fields`,

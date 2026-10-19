@@ -38,8 +38,8 @@ Keep reports short. A quiet week is a valid answer; padding is not.
    run the first-time setup in [Configuration](references/config.md#first-time-setup). If they
    would rather start now, use the defaults and offer setup again at the end. If the user names a topic or field that is not
    configured, still answer, and offer to add it ([Configuration](references/config.md)).
-3. If the user mentions a knowledge base or one is connected (for example Cairn tools), use it
-   to see what they already have before recommending; see [Handoff](references/handoff.md).
+3. If the user mentions a knowledge base or one is connected, use it to see what they already
+   have before recommending; see [Handoff](references/handoff.md).
 
 ## Choose the mode
 

@@ -4,6 +4,9 @@ Aster has one job: tell a researcher what is new in their fields and what is bei
 with every item traceable to a primary source. Keep it small. Before adding a feature, ask
 whether a brief, a buzz report, a sweep or a lookup needs it.
 
+Aster may hand off to Finch and Quill, and to any connected knowledge base, but never names a
+particular knowledge base or the tools built on one (such as Cairn or the Cairn workbench).
+
 ## Layout
 
 - `skills/aster/` is the installable skill and must stay self-contained:
