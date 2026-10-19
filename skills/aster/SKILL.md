@@ -4,7 +4,7 @@ description: Scout what is new and what is being discussed in the user's researc
 license: MIT
 metadata:
   author: Sikun Xu
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Aster

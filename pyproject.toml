@@ -1,6 +1,6 @@
 [project]
 name = "aster-scout"
-version = "0.2.0"
+version = "0.2.1"
 description = "An agent skill and CLI that finds what is new and what is being discussed in your research fields."
 readme = "README.md"
 requires-python = ">=3.12"

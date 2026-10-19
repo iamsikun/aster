@@ -8,6 +8,8 @@ Aster uses semantic versioning:
 
 ## Unreleased
 
+## 0.2.1 — 2026-10-18
+
 - The skill no longer names a particular knowledge base; it uses whichever one is connected.
 
 ## 0.2.0 — 2026-10-18
